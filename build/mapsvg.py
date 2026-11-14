@@ -161,7 +161,7 @@ def scene_hd(m,W=640,small=False,uid=None):
     """Pictorial scene of 1563 Heidelberg: castle on the hill, Heiliggeistkirche, university, Neckar and bridge."""
     uid=uid or m['id']; H=400 if not small else 250
     # key positions in scene coordinates (not geographic — a south-facing postcard view)
-    P={'cs':(470,148),'hg':(300,230),'un':(210,238),'sp':(250,248),'km':(340,236),'br':(300,292),'nk':(400,310),'pt':(170,250),'ms':(360,268),'ks':(560,70)}
+    P={'cs':(490,130),'hg':(305,218),'un':(175,232),'sp':(240,262),'km':(385,222),'br':(300,305),'nk':(455,338),'pt':(108,258),'ms':(415,268),'ks':(575,58)}
     o=[f'<svg class="cmap scene{" sm" if small else ""}" viewBox="0 0 {W} {H}" role="img" aria-label="{esc(m["title"])}（情景图，示意）" data-cm="{m["id"]}" preserveAspectRatio="xMidYMid meet">',
        f'<defs><linearGradient id="sky-{uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky2)"/><stop offset="1" style="stop-color:var(--sea1)"/></linearGradient>',
        f'<linearGradient id="riv-{uid}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--sea2)"/><stop offset=".5" style="stop-color:var(--sea1)"/><stop offset="1" style="stop-color:var(--sea2)"/></linearGradient>',
@@ -211,15 +211,18 @@ def scene_hd(m,W=640,small=False,uid=None):
     o.append('</g>')
     # labels + pulsing pins (same classes as schematic, so existing JS can highlight)
     pk={p[0]:p for p in m['places']}; idx={p[0]:i+1 for i,p in enumerate(m['places'])}
-    labs={'cs':(-8,-28),'hg':(18,8),'un':(-36,8),'sp':(20,22),'br':(80,6),'ks':(-10,-18),'nk':(70,16)}
-    fs=11 if small else 12.5
+    # short labels + generous offsets + mixed anchors so 10 names do not collide
+    labs={'cs':(0,-40,'middle'),'hg':(0,-44,'middle'),'un':(-22,6,'end'),'sp':(8,30,'middle'),
+          'km':(22,-14,'start'),'br':(0,40,'middle'),'nk':(18,22,'start'),'pt':(-20,16,'end'),
+          'ms':(28,-12,'start'),'ks':(0,-24,'middle')}
+    fs=11 if small else 13
     for k,(x,y) in P.items():
         if k not in pk: continue
-        p=pk[k]; c=p[7]; n=p[1]
+        p=pk[k]; c=p[7]; n=p[1]; short=n.split('（')[0]
         o.append(f'<g class="pm" data-pk="{k}" style="--c:var({c})"><title>{idx[k]}. {esc(n)}：{esc(p[6])}</title><circle class="pr" cx="{x}" cy="{y}" r="9"/><circle class="pc" cx="{x}" cy="{y}" r="{5 if small else 7}"/>'+
                  ('' if small else f'<text class="pn" x="{x}" y="{y+3.2}" text-anchor="middle">{idx[k]}</text>')+'</g>')
         if not small and k in labs:
-            dx,dy=labs[k]; o.append(f'<text class="pl" x="{x+dx}" y="{y+dy}" text-anchor="middle" style="font-size:{fs}px">{esc(n)}</text>')
+            dx,dy,anc=labs[k]; o.append(f'<text class="pl" x="{x+dx}" y="{y+dy}" text-anchor="{anc}" style="font-size:{fs}px">{esc(short)}</text>')
     o.append(f'<text class="cap" x="14" y="22">{m["ico"]} {esc(m["short"])} · 情景图（示意，非实测复原）</text>')
     o.append(f'<text class="cap" x="14" y="{H-12}" style="font-size:11px;opacity:.8">南望：内卡河 · 老城 · 圣灵堂 · 山上城堡</text>')
     o.append('</g></svg>')
