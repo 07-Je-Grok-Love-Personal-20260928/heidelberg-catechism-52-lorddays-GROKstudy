@@ -176,6 +176,19 @@ mark{background:var(--mk-hl);color:inherit;padding:0 2px;border-radius:3px}
 .mk-d{text-decoration:underline dashed var(--mk-con);text-decoration-thickness:2px;text-underline-offset:.28em;text-decoration-skip-ink:none}
 /* 概念块：浅色底框 / 经文：小号药丸 */
 .mk-bg{background:var(--mk-hl2);border-radius:5px;padding:0 4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+/* v10 marks 4.0 */
+.mk-box{border:1.5px solid var(--mk-def);border-radius:5px;padding:0 5px;margin:0 1px;box-decoration-break:clone;-webkit-box-decoration-break:clone;background:color-mix(in srgb,var(--mk-def) 8%,transparent);font-weight:700}
+.mk-band{display:inline;box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:1px 8px 1px 10px;border-radius:4px;border-left:4px solid var(--gold);background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 22%,transparent),color-mix(in srgb,var(--gold) 6%,transparent) 70%,transparent);font-weight:700}
+.mk-e{text-emphasis-style:filled dot;text-emphasis-color:var(--mk-bold);-webkit-text-emphasis-style:filled dot;-webkit-text-emphasis-color:var(--mk-bold);text-emphasis-position:under left;-webkit-text-emphasis-position:under left;font-weight:800}
+.mk-k{background:linear-gradient(transparent 42%,var(--mk-hl) 42% 88%,transparent 88%),repeating-linear-gradient(-18deg,transparent 0 7px,color-mix(in srgb,var(--mk-hl) 35%,transparent) 7px 9px)}
+.mkoff .mk-box,.mkoff .mk-band{border:0;background:none;padding:0;margin:0;font-weight:inherit}
+.mkcore .mk-box{border-color:var(--mk-def);background:color-mix(in srgb,var(--mk-def) 8%,transparent)}
+.mkcore .mk-band{border-left-color:var(--gold)}
+html.mkrev .art p,html.mkrev .qa p,html.mkrev .qa li,html.mkrev .card p,html.mkrev .card li{color:color-mix(in srgb,var(--fg) 42%,var(--card))}
+html.mkrev .mk-k,html.mkrev .mk-b,html.mkrev .mk-g,html.mkrev .mk-r,html.mkrev .mk-u,html.mkrev .mk-w,html.mkrev .mk-d,html.mkrev .mk-e,html.mkrev .mk-box,html.mkrev .mk-band,html.mkrev .mk-bg,html.mkrev .mk-p,html.mkrev .mk-l,html.mkrev .mk-t,html.mkrev .mk-ref{color:var(--fg);opacity:1;filter:none}
+.mkrevb{font:inherit;font-size:13px;padding:3px 9px;border-radius:999px;border:1px solid var(--bd);background:var(--card2);color:var(--fg);cursor:pointer;margin-left:6px}
+.mkrevb[aria-pressed=true]{background:color-mix(in srgb,var(--gold) 22%,var(--card2));border-color:var(--gold);font-weight:700}
+
 .mk-ref{color:var(--mk-ref);font-size:.86em;white-space:nowrap;padding:0 6px;border-radius:999px;border:1px solid color-mix(in srgb,var(--mk-ref) 45%,transparent);font-family:var(--font);font-weight:600}
 .mkoff .mk-k,.mkoff .mk-bg{background:none;padding:0;font-weight:inherit}
 .mkoff .mk-b,.mkoff .mk-r,.mkoff .mk-g{font-weight:inherit;color:inherit}
@@ -747,3 +760,40 @@ main .mk-e{position:relative}main .mk-e:hover::after{content:"背诵关键字"}
 .tleg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
 .cmap.go.done :is(.rt-l,.rt-g){animation:none!important}
 html.lite section.sec>h2::after{transition:none;transform:none}
+
+/* v10: tile source switcher */
+.lmsrc{position:relative;display:inline-flex}
+.lmsrc .lb[data-ms]{padding-right:18px}
+.lmspop{display:none;position:absolute;left:0;top:calc(100% + 6px);z-index:40;width:min(340px,86vw);max-height:min(70vh,520px);overflow:auto;padding:8px;border-radius:14px;border:1px solid var(--bd);background:var(--card);box-shadow:0 12px 40px color-mix(in srgb,var(--fg) 16%,transparent);overscroll-behavior:contain}
+.lmsrc.open .lmspop{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.lmspop .sh{grid-column:1/-1;font-size:11px;font-weight:800;color:var(--muted);padding:6px 8px 2px;letter-spacing:.04em}
+.lmspop button.src{font:inherit;font-size:12.5px;text-align:left;padding:7px 8px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--fg);cursor:pointer;display:flex;flex-direction:column;gap:1px}
+.lmspop button.src:hover,.lmspop button.src.on{background:color-mix(in srgb,var(--deliv) 16%,var(--card2));border-color:var(--deliv)}
+.lmspop button.src small{color:var(--muted);font-size:10.5px;font-weight:500;line-height:1.35}
+.lmspop .caveat{grid-column:1/-1;font-size:11px;color:var(--muted);padding:6px 8px 4px;line-height:1.5}
+.lm-st[data-s^="raster"]{font-weight:600}
+@media(max-width:480px){.lmsrc.open .lmspop{grid-template-columns:1fr;width:min(92vw,320px)}}
+/* v10 scene / explainer illustrations */
+svg.cmap.scene .hill{fill:var(--land2)}
+svg.cmap.scene .hill2{fill:var(--land1)}
+svg.cmap.scene .rivf{fill:var(--sea1);stroke:var(--river);stroke-width:1}
+svg.cmap.scene .roof{fill:var(--misery)}
+svg.cmap.scene .wall{fill:var(--card)}
+svg.cmap.scene .stone{fill:color-mix(in srgb,var(--land2) 70%,var(--muted))}
+svg.cmap.scene .flag{transform-box:fill-box;transform-origin:0 100%;animation:flagw 2.8s ease-in-out infinite}
+@keyframes flagw{50%{transform:skewX(-10deg) scaleX(.94)}}
+html.lite svg.cmap.scene .flag,html.scr svg.cmap.scene .flag{animation:none}
+svg.cmap.scene .flow{stroke:var(--sky1);stroke-width:1.2;stroke-dasharray:6 10;animation:flow 4s linear infinite;fill:none;opacity:.7}
+@keyframes flow{to{stroke-dashoffset:-32}}
+html.lite svg.cmap.scene .flow,html.scr svg.cmap.scene .flow{animation:none}
+svg.cmap.ex .year{font-weight:800;font-size:11px}
+svg.cmap.ex .ann{font-size:11px;fill:var(--fg)}
+
+.tyw-acts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.tyw-acts .act{padding:10px 12px;border-radius:12px;border:1px solid color-mix(in srgb,var(--c) 45%,var(--bd));background:color-mix(in srgb,var(--c) 12%,var(--card));min-width:0}
+.tyw-acts .act b{display:block;font-size:12px;color:var(--c)}
+.tyw-acts .act strong{display:block;margin:2px 0 4px}
+.tyw-acts .act span{display:block;font-size:12.5px;color:var(--muted);line-height:1.45}
+@media(max-width:700px){.tyw-acts{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.tyw-acts{grid-template-columns:1fr}}
+

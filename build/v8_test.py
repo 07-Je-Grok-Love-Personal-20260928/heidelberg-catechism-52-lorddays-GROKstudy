@@ -4,7 +4,7 @@ from playwright.async_api import async_playwright
 BASE=sys.argv[1] if len(sys.argv)>1 else 'http://localhost:8780/'
 SHOT=sys.argv[2] if len(sys.argv)>2 else '/tmp/v8'
 GL=['--use-gl=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']
-TILES='**/{server.arcgisonline.com,*.basemaps.cartocdn.com,tile.openstreetmap.org}/**'
+TILES='**/{server.arcgisonline.com,*.basemaps.cartocdn.com,tile.openstreetmap.org,tile.openstreetmap.fr,*.tile.openstreetmap.fr,*.tile.opentopomap.org,tiles.openfreemap.org,basemap.nationalmap.gov,map.geoq.cn,*.is.autonavi.com}/**'
 fails=[]
 def ok(c,msg):
     print(('PASS ' if c else 'FAIL ')+msg,flush=True)
@@ -15,8 +15,9 @@ async def map_case(b,name,block=None,q='',shot=None,w=1440,theme='night'):
     blocked=[0]
     async def ab(r): blocked[0]+=1; await r.abort()
     if block=='tiles':
-        for h in ['server.arcgisonline.com','basemaps.cartocdn.com','tile.openstreetmap.org']: await pg.route(f'**/*{h}*/**',ab)
-        await pg.route(lambda u:any(h in u for h in ['arcgisonline','cartocdn','openstreetmap.org']),ab)
+        HOSTS=['arcgisonline','basemaps.cartocdn','cartocdn','openstreetmap.org','openstreetmap.fr','opentopomap','openfreemap','nationalmap.gov','geoq.cn','autonavi.com']
+        for h in HOSTS: await pg.route(f'**/*{h}*/**',ab)
+        await pg.route(lambda u:any(h in u for h in HOSTS),ab)
     if block=='lib': await pg.route('**/maplibre-gl.js',ab)
     await pg.goto(BASE+'maps.html?nosw'+q,wait_until='load')
     await pg.add_style_tag(content='section.sec{content-visibility:visible!important}')

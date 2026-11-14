@@ -149,3 +149,94 @@ def world_inset(m,W=640):
                  f'<g class="pm" style="--c:var(--teal)"><title>{esc(n)} · {esc(yr)}：{esc(d)}</title><circle class="pc" cx="{x:.0f}" cy="{y:.0f}" r="5"/><text class="pl" x="{x+(8 if lon<100 else -8):.0f}" y="{y+4:.0f}" text-anchor="{"start" if lon<100 else "end"}">{esc(n.split("（")[0])} {esc(yr)}</text></g>')
     o.append(f'<text class="cap" x="14" y="22">🌍 从海德堡到全球（示意）</text></svg>')
     return ''.join(o)
+
+def illustrate(m,W=640,small=False,uid=None):
+    """Dispatch: scene / explainer / default schematic (Natural Earth + animated routes)."""
+    art=m.get('art','schematic'); uid=uid or m['id']
+    if art=='scene' and m['id']=='hd1563': return scene_hd(m,W,small,uid)
+    if art=='explainer' and m['id']=='tyw' and not small: return explainer_tyw(m,W,uid)
+    return concept(m,W,small,uid)
+
+def scene_hd(m,W=640,small=False,uid=None):
+    """Pictorial scene of 1563 Heidelberg: castle on the hill, Heiliggeistkirche, university, Neckar and bridge."""
+    uid=uid or m['id']; H=400 if not small else 250
+    # key positions in scene coordinates (not geographic — a south-facing postcard view)
+    P={'cs':(470,148),'hg':(300,230),'un':(210,238),'sp':(250,248),'km':(340,236),'br':(300,292),'nk':(400,310),'pt':(170,250),'ms':(360,268),'ks':(560,70)}
+    o=[f'<svg class="cmap scene{" sm" if small else ""}" viewBox="0 0 {W} {H}" role="img" aria-label="{esc(m["title"])}（情景图，示意）" data-cm="{m["id"]}" preserveAspectRatio="xMidYMid meet">',
+       f'<defs><linearGradient id="sky-{uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky2)"/><stop offset="1" style="stop-color:var(--sea1)"/></linearGradient>',
+       f'<linearGradient id="riv-{uid}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--sea2)"/><stop offset=".5" style="stop-color:var(--sea1)"/><stop offset="1" style="stop-color:var(--sea2)"/></linearGradient>',
+       f'<linearGradient id="roof-{uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--misery)"/><stop offset="1" style="stop-color:color-mix(in srgb,var(--misery) 70%,#4a1f14)"/></linearGradient>',
+       f'<filter id="sf-{uid}" x="-5%" y="-5%" width="110%" height="110%"><feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-opacity=".25"/></filter></defs>',
+       f'<g id="cmg-{uid}" class="cmg">',
+       f'<rect width="{W}" height="{H}" rx="14" style="fill:url(#sky-{uid})"/>',
+       # far hills
+       f'<path class="hill" d="M0 160 C80 150 140 80 220 90 C300 100 340 70 430 60 C520 50 580 90 {W} 70 L{W} {H} L0 {H} Z" opacity=".35"/>',
+       f'<path class="hill2" d="M380 130 C440 100 500 40 580 55 C620 64 640 80 {W} 90 L{W} {H} L360 {H} Z"/>',
+       f'<path class="hill" d="M-20 200 C60 170 120 190 200 200 L200 {H} L-20 {H} Z" opacity=".8"/>',
+       ]
+    # castle (group of towers on the slope)
+    cx,cy=P['cs']
+    o.append(f'<g class="castle" filter="url(#sf-{uid})" transform="translate({cx},{cy})">')
+    o.append('<path class="stone" d="M-70 40 L-60 10 L-40 10 L-36 -8 L-20 -8 L-16 10 L10 10 L16 -18 L36 -18 L40 10 L62 10 L70 42 Z"/>')
+    o.append('<rect class="stone" x="-58" y="8" width="22" height="34"/><rect class="stone" x="20" y="-16" width="18" height="58"/>')
+    o.append('<path class="roof" style="fill:url(#roof-%s)" d="M-62 8 L-47 -10 L-32 8Z"/><path class="roof" style="fill:url(#roof-%s)" d="M16 -16 L29 -36 L42 -16Z"/>'%(uid,uid))
+    o.append('<path class="flag" style="fill:var(--gold)" d="M16 -36 l0 -16 l14 6 l-14 6"/>')
+    o.append('<rect class="wall" x="-28" y="16" width="40" height="24" opacity=".9"/><rect x="-18" y="24" width="8" height="12" style="fill:var(--sea2)"/>')
+    o.append('</g>')
+    # old town roofs (cluster)
+    def house(x,y,w,h,rx=0):
+        return (f'<g transform="translate({x},{y})"><rect class="wall" x="0" y="{h*.35}" width="{w}" height="{h*.65}"/>'
+                f'<path class="roof" style="fill:url(#roof-{uid})" d="M{-2+rx} {h*.38} L{w/2} 0 L{w+2} {h*.38}Z"/></g>')
+    town=[(150,242,28,32),(178,246,22,28),(200,240,30,34),(232,244,24,30),(258,238,26,36),(328,242,22,28),(352,246,26,30),(376,240,20,32),(400,244,24,28),(424,248,18,26)]
+    o.append('<g class="town">'+''.join(house(*t) for t in town)+'</g>')
+    # Heiliggeistkirche — hall church with distinctive roof
+    hx,hy=P['hg']
+    o.append(f'<g class="church" filter="url(#sf-{uid})" transform="translate({hx},{hy})">')
+    o.append('<rect class="wall" x="-22" y="-8" width="44" height="36"/><path class="roof" style="fill:url(#roof-%s)" d="M-26 -6 L0 -28 L26 -6Z"/>'%uid)
+    o.append('<rect class="stone" x="10" y="-40" width="10" height="36"/><path class="roof" style="fill:var(--gold)" d="M8 -40 L15 -54 L22 -40Z"/>')
+    o.append('<circle cx="15" cy="-22" r="3" style="fill:var(--sky1)"/>')
+    o.append('</g>')
+    # university block
+    ux,uy=P['un']
+    o.append(f'<g transform="translate({ux},{uy})"><rect class="wall" x="-24" y="-4" width="48" height="22"/><rect class="roof" x="-26" y="-12" width="52" height="10" rx="1"/><rect x="-16" y="2" width="7" height="10" style="fill:var(--sea2)"/><rect x="-4" y="2" width="7" height="10" style="fill:var(--sea2)"/><rect x="8" y="2" width="7" height="10" style="fill:var(--sea2)"/></g>')
+    # river + bridge
+    o.append(f'<path d="M-10 300 C120 280 220 305 320 295 C420 285 520 315 {W+10} 300 L{W+10} {H} L-10 {H} Z" style="fill:url(#riv-{uid})"/>')
+    o.append(f'<path class="flow" d="M-10 318 C120 298 220 323 320 313 C420 303 520 333 {W+10} 318"/>')
+    o.append(f'<path class="flow" d="M-10 334 C140 320 250 345 360 328 C470 312 560 350 {W+10} 336" style="animation-delay:-2s"/>')
+    # bridge arches
+    bx,by=P['br']
+    o.append(f'<g transform="translate({bx},{by})"><rect class="stone" x="-70" y="-8" width="140" height="8" rx="1"/>')
+    for i,ax in enumerate((-48,-24,0,24,48)):
+        o.append(f'<path class="stone" d="M{ax-14} 0 C{ax-14} 18 {ax+14} 18 {ax+14} 0" style="fill:var(--sea1);stroke:color-mix(in srgb,var(--land2) 80%,var(--fg));stroke-width:2"/>')
+    o.append('</g>')
+    # labels + pulsing pins (same classes as schematic, so existing JS can highlight)
+    pk={p[0]:p for p in m['places']}; idx={p[0]:i+1 for i,p in enumerate(m['places'])}
+    labs={'cs':(-8,-28),'hg':(18,8),'un':(-36,8),'sp':(20,22),'br':(80,6),'ks':(-10,-18),'nk':(70,16)}
+    fs=11 if small else 12.5
+    for k,(x,y) in P.items():
+        if k not in pk: continue
+        p=pk[k]; c=p[7]; n=p[1]
+        o.append(f'<g class="pm" data-pk="{k}" style="--c:var({c})"><title>{idx[k]}. {esc(n)}：{esc(p[6])}</title><circle class="pr" cx="{x}" cy="{y}" r="9"/><circle class="pc" cx="{x}" cy="{y}" r="{5 if small else 7}"/>'+
+                 ('' if small else f'<text class="pn" x="{x}" y="{y+3.2}" text-anchor="middle">{idx[k]}</text>')+'</g>')
+        if not small and k in labs:
+            dx,dy=labs[k]; o.append(f'<text class="pl" x="{x+dx}" y="{y+dy}" text-anchor="middle" style="font-size:{fs}px">{esc(n)}</text>')
+    o.append(f'<text class="cap" x="14" y="22">{m["ico"]} {esc(m["short"])} · 情景图（示意，非实测复原）</text>')
+    o.append(f'<text class="cap" x="14" y="{H-12}" style="font-size:11px;opacity:.8">南望：内卡河 · 老城 · 圣灵堂 · 山上城堡</text>')
+    o.append('</g></svg>')
+    return ''.join(o)
+
+def explainer_tyw(m,W=640,uid=None):
+    """Schematic Europe map + four-act annotation strip (1618 / 1622 / 1631 / 1648)."""
+    uid=uid or m['id']
+    base=concept(m,W,False,uid)
+    # splice a caption-friendly wrapper: we already have a full svg. Instead return a stacked figure.
+    acts=[
+        ('1618–20','冬王','布拉格起事，白山战败。腓德烈五世在位仅一冬。','--misery'),
+        ('1622','城破','海德堡陷落，普法尔茨图书馆被运往罗马。','--deliv'),
+        ('1631','再燃','马格德堡惨剧；瑞典在布赖滕费尔德取胜。','--teal'),
+        ('1648','和约','威斯特伐利亚：下普法尔茨部分恢复。','--grat'),
+    ]
+    strip='<div class="tyw-acts" role="list">'+''.join(
+        f'<div class="act" role="listitem" style="--c:var({c})"><b>{y}</b><strong>{esc(t)}</strong><span>{esc(d)}</span></div>'
+        for y,t,d,c in acts)+'</div>'
+    return base+strip

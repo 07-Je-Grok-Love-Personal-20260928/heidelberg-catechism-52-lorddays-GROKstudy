@@ -6,7 +6,7 @@ D=json.load(open(os.path.join(ROOT,'data.json')))
 SER=json.load(open(os.path.join(ROOT,'sermons.json')))
 from notes1 import N as _a; from notes2 import N as _b; from notes3 import N as _c
 N={**_a,**_b,**_c}
-VERSION='v9'; DATE='2026-10-24'
+VERSION='v10'; DATE='2026-11-14'
 REPO='heidelberg-catechism-52-lorddays-GROKstudy'
 CCI='https://ccifellowship.org'
 def esc(s): return html.escape(s,quote=True)
@@ -76,7 +76,7 @@ def sec(id,ico,title,inner,cls=''):
     title=re.sub(r'^[一二三四五六七八九十]+、','',title)
     return f'<section class="sec {cls}"><h2 id="{id}"><span class="ico">{ico}</span>{title}</h2>{inner}</section>'
 # ---------- marking system ----------
-MD=[(r'\*\*(.+?)\*\*','mk-b'),(r'==(.+?)==','mk-k'),(r'~~(.+?)~~','mk-w'),(r'__(.+?)__','mk-u'),(r'::(.+?)::','mk-d'),(r'!!(.+?)!!','mk-r'),(r'@@(.+?)@@','mk-p'),(r'##(.+?)##','mk-l'),(r'%%(.+?)%%','mk-t'),(r'\^\^(.+?)\^\^','mk-bg'),(r';;(.+?);;','mk-e')]
+MD=[(r'\*\*(.+?)\*\*','mk-b'),(r'==(.+?)==','mk-k'),(r'~~(.+?)~~','mk-w'),(r'__(.+?)__','mk-u'),(r'::(.+?)::','mk-d'),(r'!!(.+?)!!','mk-r'),(r'@@(.+?)@@','mk-p'),(r'##(.+?)##','mk-l'),(r'%%(.+?)%%','mk-t'),(r'\^\^(.+?)\^\^','mk-bg'),(r';;(.+?);;','mk-e'),(r'\[\[(.+?)\]\]','mk-box'),(r'\+\+(.+?)\+\+','mk-band')]
 def md(s):
     s=esc(s)
     for pat,c in MD: s=re.sub(pat,lambda m:f'<span class="{c}">{m.group(1)}</span>',s)
@@ -185,11 +185,11 @@ def post(body):
     return str(soup)
 LEGEND_ITEMS=[('<span class="mk-p">人物</span>','人物'),('<span class="mk-l">地点</span>','地点'),('<span class="mk-t">1563年</span>','年代'),('<span class="mk-k">高亮</span>','核心词句'),('<span class="mk-b">粗体金</span>','重点'),('<span class="mk-u">蓝实线</span>','定义 / 术语'),('<span class="mk-w">橙波浪</span>','难点'),('<span class="mk-d">红虚线</span>','对比 / 错误立场'),('<span class="mk-r">红字</span>','警示'),('<span class="mk-ref">罗8:28</span>','经文')]
 MKLV=[('① 核心层 · 先背这里',[('mk-k','荧光底 + 粗体','核心词句（答案主干，背诵首选）')]),
- ('② 重点层 · 有颜色的粗体',[('mk-b','金色粗体','重点概念 / 论题关键词'),('mk-g','绿色粗体','恩典 · 应许 · 安慰'),('mk-r','红色粗体','警示 · 审判 · 严重后果'),('mk-e','着重号','背诵关键字（字下圆点）')]),
+ ('② 重点层 · 有颜色的粗体',[('mk-b','金色粗体','重点概念 / 论题关键词'),('mk-g','绿色粗体','恩典 · 应许 · 安慰'),('mk-r','红色粗体','警示 · 审判 · 严重后果'),('mk-e','着重号','背诵关键字（字下圆点）'),('mk-box','线框','整句定义 / 要背的短句'),('mk-band','色条块','记忆条：一句核心')]),
  ('③ 语义线 · 线型代表含义',[('mk-u','蓝色实线','定义 / 术语（盟约、称义…）'),('mk-w','橙色波浪线','难点：需要细想'),('mk-d','红色虚线','对比 / 错误立场（罗马教、抗辩派…）'),('mk-bg','淡紫底纹','并列要点 / 结构词（三重职分、两部分…）')]),
  ('④ 史地层 · 人 · 地 · 时',[('mk-p','紫色人物','历史人物（乌尔西努、加尔文…）'),('mk-l','青色点线','地点（海德堡、多特…）'),('mk-t','时间徽章','年代（1563年…）'),('mk-ref','经文药丸','圣经出处')])]
 CO_KINDS=[('co-core','核心','一句话论题'),('co-hard','难点','需要细想的地方'),('co-trap','易错','常见误解'),('co-gold','金句','原文逐字摘录'),('co-hook','记忆钩','一句口诀'),('co-bible','核心经文','原文脚注首条'),('co-hist','历史','背景与人物'),('co-geo','地理','地点与路线')]
-MKSEG='<span class="mkseg" role="radiogroup" aria-label="笔记标记"><button type="button" role="radio" aria-checked="false" data-mk-set="all">🖍️ 全部</button><button type="button" role="radio" aria-checked="false" data-mk-set="core">⭐ 仅核心</button><button type="button" role="radio" aria-checked="false" data-mk-set="off">🧽 关</button></span>'
+MKSEG='<span class="mkseg" role="radiogroup" aria-label="笔记标记"><button type="button" role="radio" aria-checked="false" data-mk-set="all">🖍️ 全部</button><button type="button" role="radio" aria-checked="false" data-mk-set="core">⭐ 仅核心</button><button type="button" role="radio" aria-checked="false" data-mk-set="off">🧽 关</button></span><button type="button" class="mkrevb" data-mk-rev aria-pressed="false" title="复习模式：淡化未标记文字，只留下标记（Shift+M）">🎯 复习</button>'
 def legend_html(full=True):
     if not full:
         it=''.join(f'<span class="it"><span class="{c}">{l}</span><span class="muted small">{d.split("（")[0]}</span><b class="mkn" data-mkc="{c}"></b></span>' for _,rows in MKLV for c,l,d in rows)

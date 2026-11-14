@@ -44,11 +44,15 @@ addEventListener('load',()=>setTimeout(schedPL,300),{once:true});
  document.addEventListener('visibilitychange',()=>{if(sky)sky.classList.toggle('paused',document.hidden||SC.on)});
  /* ---------- marks toggle ---------- */
  const MKS=['all','core','off'],MKT={all:'🖍️ 标记：全部',core:'⭐ 标记：仅核心（荧光核心词 + 经文）',off:'🧽 标记：关（纯净阅读）'};
+ const getRev=()=>root.classList.contains('mkrev');
+ const setRev=(on,say)=>{root.classList.toggle('mkrev',!!on);LS.set('hc-mkrev',!!on);$$('[data-mk-rev]').forEach(b=>b.setAttribute('aria-pressed',String(!!on)));if(say)toast(on?'🎯 复习模式：未标记文字已淡化（再按 Shift+M 退出）':'🎯 已退出复习模式')};
+ if(LS.get('hc-mkrev')===true)setRev(true);
+
  const getMk=()=>root.classList.contains('mkoff')?'off':root.classList.contains('mkcore')?'core':'all';
  const syncMk=m=>{$$('[data-mk-set]').forEach(x=>x.setAttribute('aria-checked',x.dataset.mkSet===m?'true':'false'));$$('[data-marks]').forEach(x=>{x.dataset.mk=m;x.title=MKT[m]+' · M 切换'})};
  const setMarks=(m,say)=>{root.classList.toggle('mkcore',m==='core');root.classList.toggle('mkoff',m==='off');LS.set('hc-marks',m);syncMk(m);if(say)toast(MKT[m])};
  syncMk(getMk());
- document.addEventListener('click',e=>{const s=e.target.closest('[data-mk-set]');if(s){setMarks(s.dataset.mkSet,1);return}if(!e.target.closest('[data-marks]'))return;setMarks(MKS[(MKS.indexOf(getMk())+1)%3],1)});
+ document.addEventListener('click',e=>{const r=e.target.closest('[data-mk-rev]');if(r){setRev(!getRev(),1);return}const s=e.target.closest('[data-mk-set]');if(s){setMarks(s.dataset.mkSet,1);return}if(!e.target.closest('[data-marks]'))return;setMarks(MKS[(MKS.indexOf(getMk())+1)%3],1)});
  /* ---------- anchor jumps that survive content-visibility size estimates ---------- */
  const jump=(el,push)=>{if(!el)return;const far=Math.abs(el.getBoundingClientRect().top)>innerHeight*1.5;el.scrollIntoView({block:'start',behavior:far?'instant':'smooth'});
   if(push)history.pushState(null,'','#'+el.id);let k=0,stable=0;const want=()=>parseFloat(getComputedStyle(el).scrollMarginTop)||0;
@@ -258,13 +262,13 @@ addEventListener('load',()=>setTimeout(schedPL,300),{once:true});
   nvi.addEventListener('click',e=>{if(MOB.matches&&e.target.closest('a,button')&&nv.classList.contains('open')){nv.classList.remove('open');nvt.setAttribute('aria-expanded','false')}const b=e.target.closest('[data-nv]');if(!b)return;const k=b.dataset.nv;if(k==='back')back();else if(k==='fwd')history.forward();else if(k==='bottom')toBottom();else if(k==='help')help();});
   addEventListener('pageshow',nvSync);NAVI&&NAVI.addEventListener&&NAVI.addEventListener('currententrychange',nvSync);
   let lastY=scrollY;addEventListener('scroll',()=>{if(!SC.on)return;const y=scrollY;if(y>lastY+40&&!nv.classList.contains('dim')){nv.classList.add('dim')}lastY=y},{passive:true});}
- const HELP=[['[ / ]','后退 / 前进'],['H','主页'],['G / Shift+G','到顶部 / 到底部'],[', / .','上一 / 下一主日（← → 亦可）'],['T','目录'],['M','笔记标记：全部 / 仅核心 / 关'],['N','展开 / 收起快捷导航'],['Esc','关闭弹窗 · 取消标记聚焦'],['?','本说明']];
+ const HELP=[['[ / ]','后退 / 前进'],['H','主页'],['G / Shift+G','到顶部 / 到底部'],[', / .','上一 / 下一主日（← → 亦可）'],['T','目录'],['M','笔记标记：全部 / 仅核心 / 关'],['Shift+M','复习模式：只留下标记'],['N','展开 / 收起快捷导航'],['Esc','关闭弹窗 · 取消标记聚焦'],['?','本说明']];
  const help=()=>{let d=$('#kbHelp');if(!d){d=document.createElement('div');d.id='kbHelp';d.className='kbhelp';d.setAttribute('role','dialog');d.setAttribute('aria-label','快捷键');d.innerHTML='<h5>⌨️ 快捷键</h5>'+HELP.map(([k,t])=>'<div><kbd>'+k+'</kbd><span>'+t+'</span></div>').join('')+'<button type="button" class="btn" data-close>关闭</button>';document.body.appendChild(d);d.addEventListener('click',e=>{if(e.target.closest('[data-close]'))d.classList.remove('show')})}d.classList.toggle('show')};
  /* ---------- keyboard ---------- */
  addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select')||e.target.isContentEditable||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key;
   if(k==='Escape'){$('#kbHelp')?.classList.remove('show');if(root.dataset.mkf){mkFocus(null)}return}
   const go=a=>{const x=$(a);if(x)location.href=x.href};
-  if(k==='t')tocBtn?.click();else if(k==='r')$('#reciteBtn')?.click();else if(k==='m')$('#marksBtn')?.click();
+  if(k==='t')tocBtn?.click();else if(k==='r')$('#reciteBtn')?.click();else if(k==='m'&&e.shiftKey){setRev(!getRev(),1);e.preventDefault()}else if(k==='m')$('#marksBtn')?.click();
   else if(k==='ArrowLeft'||k===',')go('#prevLd');else if(k==='ArrowRight'||k==='.')go('#nextLd');
   else if(k==='[')back();else if(k===']')history.forward();else if(k==='h')location.href=ROOT+'index.html';
   else if(k==='g')toTop();else if(k==='G')toBottom();else if(k==='n')nv?._tg?.();else if(k==='?')help();else return;
