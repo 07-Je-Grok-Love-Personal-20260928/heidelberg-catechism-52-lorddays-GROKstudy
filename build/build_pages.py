@@ -121,7 +121,7 @@ angles=[('🏛️','历史视角','1563 年普法尔茨的政治与信仰处境�
 ('🛡️','护教/论辩视角','面对罗马教（第80问）、重洗派（第74问）、路德宗（第47–48问）、反三一论者（主日8）。','compare.html'),
 ('🏫','教育视角','“用于教导年轻人，也为牧师和教师提供教义指南”——教会、家庭、学校三位一体的盟约教育。','memory.html')]
 bib+=sec('angles','🔭','三、八个视角看同一部要理问答','<div class="grid">'+''.join(f'<a class="card lift reveal" href="{h}"><h3>{i} {t}</h3><p class="muted">{esc(d)}</p></a>' for i,t,d,h in angles)+'</div>')
-bib+=sec('core','💎','四、本质核心：一句话、三件事、一位基督','''<div class="card reveal">'+hh(3,'core-one','💎','一句话：第1问')+'<p class="mn">“我的身体和灵魂都不属于我自己，而属于我信实的救主耶稣基督。”（第1问）</p>'+hh(3,'core-three','③','三件事：罪 · 恩 · 谢')+'<ol class="core"><li><b>罪</b>：我必须知道我的罪恶和愁苦有多么深重（第2问）。</li><li><b>恩</b>：我怎样才能得救，并脱离这一切的罪恶和愁苦——唯独藉着真心信靠耶稣基督（第60问）。</li><li><b>谢</b>：我当如何为这样的拯救而感谢神——以真归正、遵行十诫、恒切祷告。</li></ol>'+hh(3,'core-christ','✝️','一位基督：唯一的中保')+'<p>全书的中心不是一个概念，而是一位位格：<span class="key">耶稣基督，真神真人，唯一的中保</span>。要理问答的“安慰”是客观的（基督已成就）、个人的（“我”）、群体的（“我们的父”）、末世的（“阿们”）。</p></div>''')
+bib+=sec('core','💎','四、本质核心：一句话、三件事、一位基督','<div class="card reveal">'+hh(2,'core-parts','💎','一句话、三件事、一位基督')+hh(3,'core-one','💎','一句话：第1问')+'<p class="mn">“我的身体和灵魂都不属于我自己，而属于我信实的救主耶稣基督。”（第1问）</p>'+hh(3,'core-three','③','三件事：罪 · 恩 · 谢')+'<ol class="core"><li><b>罪</b>：我必须知道我的罪恶和愁苦有多么深重（第2问）。</li><li><b>恩</b>：我怎样才能得救，并脱离这一切的罪恶和愁苦——唯独藉着真心信靠耶稣基督（第60问）。</li><li><b>谢</b>：我当如何为这样的拯救而感谢神——以真归正、遵行十诫、恒切祷告。</li></ol>'+hh(3,'core-christ','✝️','一位基督：唯一的中保')+'<p>全书的中心不是一个概念，而是一位位格：<span class="key">耶稣基督，真神真人，唯一的中保</span>。要理问答的“安慰”是客观的（基督已成就）、个人的（“我”）、群体的（“我们的父”）、末世的（“阿们”）。</p></div>')
 # ---- v7: covenant-chain statistics (from notes7.E) ----
 from notes7 import E as E7
 import collections as _co
@@ -165,7 +165,7 @@ def term_bars():
 lds+=sec('terms','📊','核心词分布：22 个教义词在全书各部分的出现次数',term_bars())
 lds+=sec('heat','🔥','交叉引用热力图：哪些主日与其他信条联系最密',f'<div class="card reveal"><div class="chart mm">{xheat()}</div><p class="small muted" style="margin:6px 0 0">颜色越深＝本站为该主日列出的对照越多（比利时信条条数 / 多特信经段落 / 威斯敏斯特问数）；点击格子进入主日。</p></div>')
 _qr=''.join(f'<tr><td><a href="ld/{n:02d}.html">{LDI[n]} {n}</a></td><td><span class="chip {part(n)[0]}" style="font-size:11px">{part(n)[1]}</span> {esc(E7[n]["q"])}</td>'+''.join(f'<td class="small">{esc(E7[n]["ch"][i][1])}</td>' for i in range(3))+'</tr>' for n in range(1,53))
-lds+=sec('qchain','❓','52 个问题 · 圣约链一览',hh(3,'qc-how','🧬','怎么读：问题 + 圣约链三栏')+f'<p class="muted small">每个主日回答一个问题；右边三栏是该主日“圣约链”的经文：📜 旧约应许 → ✝️ 在基督里成全 → ⛪ 今天的教会与我（本站学习笔记）。</p><div class="tbl qct"><table><thead><tr><th>主日</th><th>本主日回答的问题</th><th>📜 应许</th><th>✝️ 成全</th><th>⛪ 今天</th></tr></thead><tbody>{_qr}</tbody></table></div>')
+lds+=sec('qchain','❓','52 个问题 · 圣约链一览',hh(2,'qc-how','🧬','怎么读这张表')+hh(3,'qc-cols','📑','五栏：主日 · 问题 · 应许 · 成全 · 今天')+f'<p class="muted small">每个主日回答一个问题；右边三栏是该主日“圣约链”的经文：📜 旧约应许 → ✝️ 在基督里成全 → ⛪ 今天的教会与我（本站学习笔记）。</p><div class="tbl qct"><table><thead><tr><th>主日</th><th>本主日回答的问题</th><th>📜 应许</th><th>✝️ 成全</th><th>⛪ 今天</th></tr></thead><tbody>{_qr}</tbody></table></div>')
 lds+=sec('table','📊','总表：结构与信条对照',f'<div class="tbl"><table><thead><tr><th>主日</th><th>问答</th><th>部分</th><th>子目</th><th>比利时信条</th><th>多特</th><th>WSC</th></tr></thead><tbody>{rows}</tbody></table></div>')
 page('lorddays.html','52主日总览',lds,'海德堡要理问答52主日总览')
 print('pages part1 done')
