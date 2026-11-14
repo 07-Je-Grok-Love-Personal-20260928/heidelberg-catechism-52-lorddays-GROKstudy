@@ -78,7 +78,7 @@ def lanes_chart(maps):
     """Overview: one lane per map, year span of its story (history maps only)."""
     import re as _r
     W=640; rows=[m for m in maps if m['page']=='maps']; H=len(rows)*34+30; ysall=[int(x) for m in maps if m["page"]=="maps" for y,_ in m["story"] for x in _r.findall(r"1[4-9]\d\d",y)] or [1500,1650]; y0,y1=min(ysall)//25*25, (max(ysall)+24)//25*25; X=lambda y:110+(y-y0)*(W-130)/max(y1-y0,1)
-    o=[f'<svg class="lanes" viewBox="0 0 {W} {H}" role="img" aria-label="历史地图的年代跨度" style="width:100%;min-width:520px;height:auto">']
+    o=[f'<svg class="lanes" viewBox="0 0 {W} {H}" role="img" aria-label="历史地图的年代跨度" style="width:100%;max-width:100%;height:auto">']
     cols=['--deliv','--gold','--intro','--teal','--grat']
     for i,m in enumerate(rows):
         ys=[int(x) for y,_ in m['story'] for x in _r.findall(r'1[4-9]\d\d',y)]; a,b=(min(ys) if ys else y0),(max(ys) if ys else y1); y=i*34+6
