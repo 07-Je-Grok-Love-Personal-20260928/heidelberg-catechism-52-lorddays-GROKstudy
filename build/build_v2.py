@@ -36,6 +36,7 @@ v2changes=['📱 手机端圣约神学流程图改为竖排“盟约阶梯”，
 '🏷️ 仓库更名为 heidelberg-catechism-52-lorddays-GROKstudy（保留全部历史），GitHub Pages 地址随之更新；全站只用相对路径。',
 '✅ 原文逐字校验仍为 0 处差异；375 / 768 / 1440 三种宽度的溢出检测重新跑过；截图全部重拍。']
 V10=[('GitHub Pages','https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/'),('Surge','https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.surge.sh'),('Netlify','https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.netlify.app')]
+V11=[('GitHub Pages','https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/'),('Surge','https://heidelberg-catechism-52-lorddays-20261114-v11-grokstudy.surge.sh'),('Netlify','https://heidelberg-catechism-52-lorddays-20261114-v11-grokstudy.netlify.app')]
 V9=[('GitHub Pages','https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/'),('Surge','https://heidelberg-catechism-52-lorddays-20261024-v9-grokstudy.surge.sh'),('Netlify','https://heidelberg-catechism-52-lorddays-20261024-v9-grokstudy.netlify.app')]
 V8=[('GitHub Pages（与 v10 同一地址，现显示最新版）','https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/'),('Surge','https://heidelberg-catechism-52-lorddays-20261023-v8-grokstudy.surge.sh'),('Netlify','https://heidelberg-catechism-52-lorddays-20261023-v8-grokstudy.netlify.app')]
 V7=[('GitHub Pages（与 v10 同一地址，现显示最新版）','https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/'),('Surge','https://heidelberg-catechism-52-lorddays-20261023-v7-grokstudy.surge.sh'),('Netlify','https://heidelberg-catechism-52-lorddays-20261023-v7-grokstudy.netlify.app')]
@@ -70,6 +71,14 @@ v5changes=['⏳ 历史时间线扩充到 36 个事件，分为五个时期（背
 '⚖️ 对比页新增：“三个处境 → 三份文件”问题—文件—回答流程（说明为什么是三份而不是一份）；可点击的三圆维恩图（独有重点 / 两两共同 / 共同核心）；“抗辩派五条 vs 多特 vs 海德堡 vs 比利时”对照表。',
 '🎧 连续朗读播放器：主日页与原文阅读版一键“连续朗读”，底部播放条支持 上一段 / 播放暂停 / 下一段 / 语速 / 进度，当前朗读的问答高亮并自动滚动到视野内（使用浏览器自带语音，效果取决于系统中文语音）。',
 '✅ 校验：原文逐字 0 差异；全部页面 375 / 768 / 1024 / 1440 无溢出；Playwright 测试（新增地图飞行、时期筛选、朗读播放器、缩放与罗盘测试）；v4 → v5 性能对比见 README。']
+v11changes=[
+'📑 真正的三级目录：构建期从每页 h2 / h3 / h4 生成 TOC（一级「一、二、三」，二级「1.」，三级「1.1」）。二级 / 三级可折叠，提供全部展开 / 全部折叠；滚动自动展开路径并高亮当前小节。每条条目都有独立标题与图标；长标题单行省略，悬停可见全文。',
+'↔️ 展开后的目录可自由拖宽（桌面约 220px–60vw，手机抽屉上限 92vw），右侧可见 ⋮ 把手，支持指针与触屏；双击复位；宽度写入 localStorage；用 CSS 变量 --side + rAF 改宽，避免正文跟着抖。目录仍可隐藏。',
+'🧱 全站标题树按 TOC 三级重排：主日页的要义 / 金句 / 易错 / 经文 / 圣约链 / 应用与记忆工具进入二级或三级；地图与历史的示意图、实时地图、站点表收在「示意图与实时地图」二级之下；信条条文、分卷范围、记忆骨架四块等补齐三级。构建期给同名小节加上父级简称，避免目录出现重复的「时间线」。',
+'☁️ 背景云层漂移略加长并改用更平滑的缓动（约 60 秒 cubic-bezier），滚动时仍暂停。',
+'🌐 发布到新的 v11 域名：Surge heidelberg-catechism-52-lorddays-20261114-v11-grokstudy.surge.sh；新建同名 Netlify 站点；GitHub Pages 更新为 v11。v10 / v10.1 的 Surge 与 Netlify 域名保留不动（tag v10 / v10.1 也不移动）。',
+'✅ 校验：原文逐字 2,712 块 + 53 条金句 0 差异；和合本经文 138 处 0 差异；十套主题 WCAG AA（FAILS 0）；v8 / v9 Playwright 测试 0 失败。完整布局矩阵（含目录最小 / 最大宽度）与流畅度测量见 README 随后补记。',
+]
 v10_1changes=[
 '🔧 v10.1 热修（仍发布到原 v10 三个域名，不移动 tag v10）：底图选择器弹出层改为右对齐并限制在视口宽度内，修复 360 / 375 / 414 下 maps、geo-bible、history 页面横向滚到约 416px；总览年代泳道图取消 520px 最小宽度，随栏宽缩放。v10 上线后的「选择器被地图卡片裁切」修复一并保留。',
 '🏰 海德堡 1563 情景图标签拉开（短名、交错锚点、马厩区挪到河岸），避免互相重叠。',
@@ -128,7 +137,8 @@ v6changes=['⚡ 流畅度重做（针对“页面有些卡顿”）：几乎移�
 '✅ 校验：原文逐字 0 差异（2094 段 + 53 条金句）；4 个宽度无溢出；Playwright 测试；6× CPU 降速 + 手机仿真滚动帧率与 Lighthouse 的 v5 → v6 对比见 README。']
 lnk=lambda L:''.join(f'<li>{esc(t)}：<a href="{u}" target="_blank" rel="noopener">{u}</a></li>' for t,u in L)
 ch=f'''<section class="hero reveal"><span class="chip g">🆕 版本记录</span><h1>更新记录 Changelog</h1><p class="lead">当前版本：<b class="key">{VERSION}</b> · {DATE}</p></section>'''
-ch+=sec('v10.1','🚀',f'v10.1 · {DATE}',f'<div class="card pan core reveal"><ul class="clean">{''.join(f"<li>{esc(x)}</li>" for x in v10_1changes)}</ul><h3>🌐 v10.1 部署（沿用 v10 域名）</h3>{hh(3,"v101-go","🔗","GitHub Pages · Surge · Netlify")}<ul class="clean">{lnk(V10)}<li>Release：<a href="{REL}v10.1">{REL}v10.1</a></li></ul></div>')
+ch+=sec('v11','🚀',f'v11 · {DATE}',f'<div class="card pan core reveal"><ul class="clean">{''.join(f"<li>{esc(x)}</li>" for x in v11changes)}</ul><h3>🌐 v11 部署（新域名；保留 v10 / v10.1 站点）</h3>{hh(3,"v11-go","🔗","GitHub Pages · Surge · Netlify")}<ul class="clean">{lnk(V11)}<li>Release：<a href="{REL}v11">{REL}v11</a></li></ul></div>')
+ch+=sec('v10.1','📦',f'v10.1 · {DATE}',f'<div class="card pan core reveal"><ul class="clean">{''.join(f"<li>{esc(x)}</li>" for x in v10_1changes)}</ul><h3>🌐 v10.1 部署（沿用 v10 域名）</h3>{hh(3,"v101-go","🔗","GitHub Pages · Surge · Netlify")}<ul class="clean">{lnk(V10)}<li>Release：<a href="{REL}v10.1">{REL}v10.1</a></li></ul></div>')
 ch+=sec('v10','📦',f'v10 · {DATE}',f'<div class="card pan why reveal"><ul class="clean">{''.join(f"<li>{esc(x)}</li>" for x in v10changes)}</ul><h3>🌐 v10 部署（保留；v10.1 覆盖同域名，tag v10 未移动）</h3><ul class="clean">{lnk(V10)}<li>Release：<a href="{REL}v10">{REL}v10</a></li></ul></div>')
 ch+=sec('v9','📦','v9 · 2026-10-23',f'<div class="card pan core reveal"><ul class="clean">{"".join(f"<li>{esc(x)}</li>" for x in v9changes)}</ul><h3>🌐 v9 部署</h3><ul class="clean">{lnk(V9)}<li>Release：<a href="{REL}v9">{REL}v9</a></li></ul></div>')
 ch+=sec('v8','📦','v8 · 2026-10-23',f'<div class="card pan why reveal"><ul class="clean">{"".join(f"<li>{esc(x)}</li>" for x in v8changes)}</ul><h3>🌐 v8 部署（保留）</h3><ul class="clean">{lnk(V8)}<li>Release：<a href="{REL}v8">{REL}v8</a></li></ul></div>')
@@ -141,5 +151,5 @@ ch+=sec('v2','📦','v2 · 2026-10-20',f'<div class="card pan why reveal"><ul cl
 ch+=sec('v1','📦','v1 · 2026-10-20',f'<div class="card pan why reveal"><ul class="clean"><li>首版：52 主日深度解析页、四部全文阅读/背诵版、圣经与圣约、历史地理（时间线、地图）、信条对比、速记中心、资料页。</li><li>全部原文由程序从 ccifellowship.org 抓取并逐字校验。</li></ul><h3>🌐 v1 部署（保留不动）</h3><ul class="clean">{lnk(V1)}<li>Release：<a href="{REL}v1">{REL}v1</a></li></ul></div>')
 ch+=sec('repo','📂','源码',f'<div class="card reveal"><p><a href="https://github.com/07-Je-Grok-Love-Personal-20260928/{REPO}">github.com/07-Je-Grok-Love-Personal-20260928/{REPO}</a></p></div>')
 page('changelog.html','更新记录',ch,'版本更新记录')
-json.dump(dict(V10=V10,changes_v10=v10changes,changes_v10_1=v10_1changes,V9=V9,changes_v9=v9changes,V8=V8,changes_v8=v8changes,V1=V1,V2=V2,V3=V3,V4=V4,V5=V5,V6=V6,V7=V7,changes_v7=v7changes,changes_v6=v6changes,changes=v2changes,changes_v3=v3changes,changes_v4=v4changes,changes_v5=v5changes),open(ROOT+'/build/versions.json','w'),ensure_ascii=False,indent=1)
+json.dump(dict(V11=V11,changes_v11=v11changes,V10=V10,changes_v10=v10changes,changes_v10_1=v10_1changes,V9=V9,changes_v9=v9changes,V8=V8,changes_v8=v8changes,V1=V1,V2=V2,V3=V3,V4=V4,V5=V5,V6=V6,V7=V7,changes_v7=v7changes,changes_v6=v6changes,changes=v2changes,changes_v3=v3changes,changes_v4=v4changes,changes_v5=v5changes),open(ROOT+'/build/versions.json','w'),ensure_ascii=False,indent=1)
 print('v3 pages done', len(idx))
