@@ -797,3 +797,9 @@ svg.cmap.ex .ann{font-size:11px;fill:var(--fg)}
 @media(max-width:700px){.tyw-acts{grid-template-columns:1fr 1fr}}
 @media(max-width:420px){.tyw-acts{grid-template-columns:1fr}}
 
+
+/* v10: tile picker must escape .mcard {contain:layout paint} or it is clipped */
+.mpair{overflow:visible}
+.mcard:has(.lmsrc.open),.mpair:has(.lmsrc.open){contain:none;overflow:visible;z-index:8;position:relative}
+.lmsrc.open .lmspop{z-index:50}
+
