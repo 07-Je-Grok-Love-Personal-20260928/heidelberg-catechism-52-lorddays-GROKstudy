@@ -106,7 +106,7 @@ body.resizing .side{transition:none}
 @media(pointer:coarse){.resizer{width:22px}.resizer::after{left:9px}}
 .side h4{margin:6px 6px 6px;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:6px}
 .tocbar{display:flex;gap:6px;margin:4px 4px 8px}
-.tocbar button{flex:1;border:1px solid var(--bd);background:var(--card);color:var(--muted);border-radius:10px;padding:4px 6px;font-size:12px;cursor:pointer;font-family:var(--font)}
+.tocbar button{flex:0 1 auto;white-space:nowrap;border:1px solid var(--bd);background:var(--card);color:var(--muted);border-radius:10px;padding:4px 6px;font-size:12px;cursor:pointer;font-family:var(--font)}
 .tocbar button:hover{color:var(--fg);background:var(--card2)}
 .tocsearch{width:100%;padding:8px 12px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--fg);margin-bottom:8px;font-size:14px;font-family:var(--font)}
 .toc ul{list-style:none;margin:0;padding:0}

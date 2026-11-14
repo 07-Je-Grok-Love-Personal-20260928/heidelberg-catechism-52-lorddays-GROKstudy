@@ -1,0 +1,30 @@
+{
+ "checks": 3040,
+ "pages": 75,
+ "heavy": [
+  "maps.html",
+  "geo-bible.html",
+  "history.html",
+  "lorddays.html",
+  "memory.html",
+  "texts/hc-all.html",
+  "compare.html",
+  "texts/bc.html",
+  "texts/cd.html",
+  "index.html"
+ ],
+ "widths": [
+  360,
+  375,
+  414,
+  768,
+  1024,
+  1280,
+  1440,
+  1920
+ ],
+ "real_issues": 0,
+ "pages_with_intended_overlays": 1468,
+ "findings": [],
+ "seconds": 688
+}

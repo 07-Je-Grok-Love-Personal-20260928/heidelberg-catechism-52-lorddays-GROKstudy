@@ -107,7 +107,7 @@ def build():
     npl=sum(len(m['places']) for m in H); nrt=sum(len(m['routes']) for m in H)
     kpi=''.join(f'<div><b>{v}</b>{t}</div>' for v,t in [(len(H),'张历史地图'),(npl,'个地点'),(nrt,'条路线'),(len(B),'张圣经地理')])
     hero=f'''<section class="hero reveal hero-map"><span class="chip d">🗺️ 历史 · 地图 · 文化</span><h1>历史地图集：要理问答走过的路</h1><p class="lead">历史地图，一条主线：<b>改教的水流</b>在海德堡汇合 → 写成<span class="mk-k">安慰之书</span> → 被<b>难民</b>带往北方 → 在<b>多特</b>成为合一信条。每张地图都配有一幅<b>概念示意图</b>（动画路线）和一幅<b>实时交互地图</b>（全球可用，离线可退回）。</p><div class="kpi">{kpi}</div></section>'''
-    ov=sec('m-overview','🧭','导览：导览：地图与故事线',callout('core','一句话','**谁写的**（作者路线）→ **从哪里来**（改教传播）→ **在什么处境写成**（1563 普法尔茨）→ **怎样传开**（难民之路）→ **怎样被确认**（多特大会）。')+atlas_cards(MD.MAPS)+f'<div class="card reveal" style="margin-top:14px">{hh(2,"ov-lanes","📊","各图年代跨度（点击跳转）")}<div class="chart mm">{lanes_chart(MD.MAPS)}</div></div>')
+    ov=sec('m-overview','🧭','导览：地图与故事线',callout('core','一句话','**谁写的**（作者路线）→ **从哪里来**（改教传播）→ **在什么处境写成**（1563 普法尔茨）→ **怎样传开**（难民之路）→ **怎样被确认**（多特大会）。')+atlas_cards(MD.MAPS)+f'<div class="card reveal" style="margin-top:14px">{hh(2,"ov-lanes","📊","各图年代跨度（点击跳转）")}<div class="chart mm">{lanes_chart(MD.MAPS)}</div></div>')
     order=['ref','uo','hd1563','pal','tyw','mig','dort','trans','today']
     body=hero+ov+''.join(map_section(MD.BY[k]) for k in order)+SRCNOTE+f'<div class="pager"><a href="history.html">⬅ 🗺️ 历史地理（时间线 · 人物 · 文化）</a><a class="r" href="geo-bible.html">📖 圣经地理 ➡</a></div>'+MAPJS('')
     page('maps.html','历史地图集',body,'海德堡要理问答历史地图集：1563 普法尔茨、宗教改革传播、乌尔西努与俄利维亚努、难民之路、多特大会代表')

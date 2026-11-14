@@ -234,6 +234,7 @@ md=f'''# heidelberg-catechism-52-lorddays-20261114-v11-GROKstudy
 - `build/verify_verbatim.py`：站内 2,712 个原文块逐字比对 **0 处差异**；53 条“金句”均为原文的逐字子串（0 处差异）。
 - `build/check_cuv.py`（v7，v8 扩展到地图集与圣经地理）：学习笔记中带出处的经文引语 138 处，与信望爱 FHL 线上和合本（https://bible.fhl.net/ ，version=unv）逐条比对，**0 处不符**（修正 30 余处措辞 / 出处）。学习笔记中加引号的要理问答语句已与原文逐字对照。
 - `build/layout_check.py`（v8）：全部 73 个页面（含 52 主日、5 个分卷与 v8 新增的 maps / geo-bible / marks）× 375 / 768 / 1024 / 1440 四种宽度 × 十套主题（v9），横向溢出与顶栏截断 **0 个问题**。
+- `build/layout_v11.py`（v11）：在 v10.1 缩小矩阵之上加目录最小（220px）与最大（60vw / 手机 92vw）宽度，且每次先「全部展开」目录并 EXPAND + CLICK。75 页 × 8 宽 × night+dawn（1,200）+ 10 个重页 × 其余 8 套主题 × 8 宽（640）+ 75 页 × 8 宽 × night × {{min,max}}（1,200），合计 **3,040** 次，**0 溢出、0 非设计重叠**。截图：`shots/v11-toc-narrow.png`、`shots/v11-toc-wide.png`（maps.html，夜色主题，1440×900，三级全部展开）。
 - `build/layout_v10.py`（v10.1）：允许的缩小矩阵——全部 73 页 × 8 宽（360 / 375 / 414 / 768 / 1024 / 1280 / 1440 / 1920）× night + dawn（1200 次），外加 10 个重页（maps、geo-bible、history、lorddays、memory、texts/hc-all、compare、texts/bc、texts/cd、index）× 其余 8 套主题 × 8 宽（640 次），合计 **1840** 次；每次展开控件并点击选择器 / 导航簇 / 主题按钮。修复前 90 条真实问题全部是 maps / geo-bible / history 在 360–414 下底图选择器把 `scrollWidth` 撑到 416–417px；右对齐并限制视口宽度后，抽查这三页 + memory + index 于 360 / 375 / 414 / 768 × night / dawn / sumi（EXPAND + CLICK）**0 溢出、0 非设计重叠**（`#navc`、`.lmspop` 等浮动层按设计单独记录，不计入失败）。
 - ccifellowship.org 未收录多特信经的“结论”部分，本站也未收录。威斯敏斯特小要理问答英文引文取自 opc.org。原文版权归原出版委员会，本站仅作学习引用。解读为学习笔记，未经神学家审阅；图标、分组与“圣约链”均为学习标签。
 
