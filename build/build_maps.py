@@ -36,7 +36,7 @@ def map_section(m,pre='',num=None):
     if uid=='trans': extra+=f'<div class="card reveal">{hh(2,"trans-bars","📊","主要译本与年份（示意）")}{trans_bars()}</div>'
     if uid=='today': extra+=f'<div class="card reveal">{hh(2,"today-note","⚖️","两个改革宗家庭")}<p>{md("**欧陆改革宗**以三项联合信条为准则；**长老会改革宗**以威斯敏斯特准则为准则。二者同源（改革宗神学），文件与教会政治不同。本图标出的是仍认信或使用要理问答的若干地点，**不是世界改革宗的完整地图**。")}</p></div>'
 
-    inner=(callout('core','本质',md(m['core']))+pair+rtl+stops+extra+
+    inner=(callout('core','本质',md(m['core']))+hh(2,uid+'-see','🖼️',esc(short)+'：示意图与实时地图')+pair+rtl+stops+extra+
       f'<div class="grid g2"><div class="card pan why reveal">{hh(2,uid+"-why","🏛️",esc(short)+"：为何写进要理问答")}<p>{md(m["why"])}</p>{quote_html(m)}</div>'
       f'<div class="card pan cov reveal">{hh(2,uid+"-story","⏳",esc(short)+"：时间线")}{story}</div></div>'
       f'<div class="grid g2"><div class="card pan app reveal">{hh(2,uid+"-cul","🏞️",esc(short)+"：文化侧写")}<ul class="clean">{"".join(f"<li>{md(x)}</li>" for x in m["culture"])}</ul></div>'

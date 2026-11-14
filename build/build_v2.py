@@ -15,6 +15,7 @@ json.dump(idx,open(SITE+'/assets/data/search.json','w'),ensure_ascii=False,separ
 srch=f'''<section class="hero reveal"><span class="chip">🔎 全文搜索</span><h1>搜索三项联合信条与普世信经</h1><p class="lead">在 129 个问答、37 条比利时信条、多特信经全部条文、三大信经以及本站 52 篇解读中检索。</p>
 <input id="q" class="tocsearch" style="font-size:17px;padding:12px 16px;margin-top:10px" placeholder="例如：安慰、称义、圣餐、拣选、阿们" autofocus>
 <div class="btns" id="kinds" style="margin-top:10px"></div></section>
+<section class="sec"><h2 id="search-how"><span class="ico">🧭</span>怎样检索</h2><h3 id="search-q"><span class="ico">⌨️</span>输入关键字，结果即时过滤</h3><h4 id="search-eg"><span class="ico">💡</span>例如：安慰、称义、圣餐、拣选、阿们</h4><h3 id="search-kind"><span class="ico">🗂️</span>按文献种类筛选</h3><p class="small muted">用上方按钮限定：海德堡、比利时信条、多特信经、普世信经或解读。</p></section>
 <section class="sec"><h2 id="res"><span class="ico">📋</span>结果 <span id="cnt" class="small muted"></span></h2><div id="out" class="grid g2"></div></section>
 <script>(function(){{let D=[],kind='全部';const q=document.getElementById('q'),out=document.getElementById('out'),cnt=document.getElementById('cnt'),kd=document.getElementById('kinds');
 const esc=s=>s.replace(/[&<>"]/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c]));
@@ -127,7 +128,7 @@ v6changes=['⚡ 流畅度重做（针对“页面有些卡顿”）：几乎移�
 '✅ 校验：原文逐字 0 差异（2094 段 + 53 条金句）；4 个宽度无溢出；Playwright 测试；6× CPU 降速 + 手机仿真滚动帧率与 Lighthouse 的 v5 → v6 对比见 README。']
 lnk=lambda L:''.join(f'<li>{esc(t)}：<a href="{u}" target="_blank" rel="noopener">{u}</a></li>' for t,u in L)
 ch=f'''<section class="hero reveal"><span class="chip g">🆕 版本记录</span><h1>更新记录 Changelog</h1><p class="lead">当前版本：<b class="key">{VERSION}</b> · {DATE}</p></section>'''
-ch+=sec('v10.1','🚀',f'v10.1 · {DATE}',f'<div class="card pan core reveal"><ul class="clean">{''.join(f"<li>{esc(x)}</li>" for x in v10_1changes)}</ul><h3>🌐 v10.1 部署（沿用 v10 域名）</h3><ul class="clean">{lnk(V10)}<li>Release：<a href="{REL}v10.1">{REL}v10.1</a></li></ul></div>')
+ch+=sec('v10.1','🚀',f'v10.1 · {DATE}',f'<div class="card pan core reveal"><ul class="clean">{''.join(f"<li>{esc(x)}</li>" for x in v10_1changes)}</ul><h3>🌐 v10.1 部署（沿用 v10 域名）</h3>{hh(3,"v101-go","🔗","GitHub Pages · Surge · Netlify")}<ul class="clean">{lnk(V10)}<li>Release：<a href="{REL}v10.1">{REL}v10.1</a></li></ul></div>')
 ch+=sec('v10','📦',f'v10 · {DATE}',f'<div class="card pan why reveal"><ul class="clean">{''.join(f"<li>{esc(x)}</li>" for x in v10changes)}</ul><h3>🌐 v10 部署（保留；v10.1 覆盖同域名，tag v10 未移动）</h3><ul class="clean">{lnk(V10)}<li>Release：<a href="{REL}v10">{REL}v10</a></li></ul></div>')
 ch+=sec('v9','📦','v9 · 2026-10-23',f'<div class="card pan core reveal"><ul class="clean">{"".join(f"<li>{esc(x)}</li>" for x in v9changes)}</ul><h3>🌐 v9 部署</h3><ul class="clean">{lnk(V9)}<li>Release：<a href="{REL}v9">{REL}v9</a></li></ul></div>')
 ch+=sec('v8','📦','v8 · 2026-10-23',f'<div class="card pan why reveal"><ul class="clean">{"".join(f"<li>{esc(x)}</li>" for x in v8changes)}</ul><h3>🌐 v8 部署（保留）</h3><ul class="clean">{lnk(V8)}<li>Release：<a href="{REL}v8">{REL}v8</a></li></ul></div>')

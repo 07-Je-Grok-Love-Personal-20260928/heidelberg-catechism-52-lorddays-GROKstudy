@@ -144,7 +144,10 @@ def number(soup):
             except ValueError:
                 pass
             els.append(el); continue
-        if el.name in ('h2','h3','h4') and not _noauto(el):
+        if el.name in ('h2','h3','h4'):
+            # v11: headings inside .art / details / summary belong in the TOC.
+            # Only skip chrome in the site header, aside, footer, or a naked hero h1 sibling.
+            if el.find_parent(['header','aside','footer']): continue
             el['data-lv']={'h2':'1','h3':'2','h4':'3'}[el.name]; els.append(el)
     c=[0,0,0,0,0]
     for i,el in enumerate(els):

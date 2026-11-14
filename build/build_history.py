@@ -40,7 +40,7 @@ HMAP=dict(id='hist',page='history',ico='🗺️',title='地理：交互地图 + 
 _cm=mapsvg.concept(HMAP)
 _rtl='<div class="rtl" role="group" aria-label="路线开关">'+''.join(f'<button type="button" class="rtb on" data-rt="hist:{r[0]}" style="--c:var({r[2]})" aria-pressed="true" title="{esc(r[5])}"><i class="sw {r[3]}"></i>{esc(r[1])}</button>' for r in HMAP['routes'])+'<button type="button" class="rtb play" data-play="hist">▶ 播放路线</button></div>'
 his+=sec('geo','🗺️','地理：概念图 + 实时地图 + 地点卡片（与主日相连）',callout('geo','地理',md('**三条水流汇向一处**：瑞士的改革宗神学（苏黎世、日内瓦）、萨克森的路德宗传统（维滕堡）与尼德兰的难民教会，在莱茵河—内卡河交汇的==海德堡==相遇，又沿莱茵河北上，在==多特==汇合。'))+
-  f'<div id="map" class="mpair"><figure class="mcard cm reveal">{hh(3,"geo-art","🎨","历史舞台：概念示意图")}<p class="small muted" style="margin:0 0 6px">动画路线 · 编号地点</p>{_cm}</figure><figure class="mcard lv">{hh(3,"geo-live","🛰️","历史舞台：实时交互地图")}<p class="small muted" style="margin:0 0 6px">拖动 / 双指缩放 · 点击地点</p>{BM.live_box(HMAP)}</figure></div>'+_rtl+
+  hh(2,'geo-see','🖼️','历史舞台：示意图与实时地图')+f'<div id="map" class="mpair"><figure class="mcard cm reveal">{hh(3,"geo-art","🎨","历史舞台：概念示意图")}<p class="small muted" style="margin:0 0 6px">动画路线 · 编号地点</p>{_cm}</figure><figure class="mcard lv">{hh(3,"geo-live","🛰️","历史舞台：实时交互地图")}<p class="small muted" style="margin:0 0 6px">拖动 / 双指缩放 · 点击地点</p>{BM.live_box(HMAP)}</figure></div>'+_rtl+
   '<p class="small muted">时间线的“时期”按钮会同步淡化两幅地图上不属于该时期的地点；地点卡片的“在地图上查看”会让实时地图飞到该处。更多专题地图见 <a href="maps.html">🗺️ 历史地图集</a> 与 <a href="geo-bible.html">🏜️ 圣经地理</a>。</p>'+BM.mapdef(HMAP)+
   hh(2,'places','📍','地点卡片（21 处）')+places_html())
 his+=sec('people','👥','四、人物与图像',pp)
