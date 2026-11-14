@@ -1,4 +1,24 @@
 {
+ "V10": [
+  [
+   "GitHub Pages",
+   "https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/"
+  ],
+  [
+   "Surge",
+   "https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.surge.sh"
+  ],
+  [
+   "Netlify",
+   "https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.netlify.app"
+  ]
+ ],
+ "changes_v10": [
+  "🗺️ 底图源大幅扩充，并加上可见的「📚 底图」选择器：Esri 街道 / 地形 / 国家地理 / 自然地貌、CARTO Voyager / Positron / Dark Matter、OSM / OSM Humanitarian、OpenTopoMap、OpenFreeMap Liberty / Bright / Dark（矢量样式）、USGS 地形、GeoQ 智图、高德道路（无钥试探）。选择自动记住；「自动」按列表探测，8 秒无瓦片或连续失败即改用下一个，全部失败退回站内 Natural Earth。高德 / GeoQ 为中国可达源，采用 GCJ-02，与本站 WGS-84 地点有偏移，仅作底图；Stadia/Stamen 现需密钥，未接入。",
+  "🖼️ 新增五张地图，各配示意图或情景图 / 讲解图 + 实时地图：🏰 1563 海德堡城情景图（城堡、圣灵堂、大学、内卡河）；⚔️ 三十年战争与普法尔茨命运（1618–1648 四幕讲解）；🌐 要理问答译本之路；🕊️ 今日欧陆改革宗教会分布（示意）；✝️ 福音地理（伯利恒—加利利—耶路撒冷，对应主日 14–19）。",
+  "🖍️ 笔记标记 4.0：新增线框标记 [[…]] 与色条记忆块 ++…++；「🎯 复习」模式（Shift+M）淡化未标记文字，只留下记号。",
+  "✅ 校验：原文逐字 0 差异；和合本经文 0 差异；十套主题 WCAG AA；v8 / v9 Playwright 测试通过。"
+ ],
  "V9": [
   [
    "GitHub Pages",
@@ -25,7 +45,7 @@
  ],
  "V8": [
   [
-   "GitHub Pages（与 v9 同一地址，现显示最新版）",
+   "GitHub Pages（与 v10 同一地址，现显示最新版）",
    "https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/"
   ],
   [
@@ -65,7 +85,7 @@
  ],
  "V2": [
   [
-   "GitHub Pages（与 v9 同一地址，现显示最新版）",
+   "GitHub Pages（与 v10 同一地址，现显示最新版）",
    "https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/"
   ],
   [
@@ -79,7 +99,7 @@
  ],
  "V3": [
   [
-   "GitHub Pages（与 v9 同一地址，现显示最新版）",
+   "GitHub Pages（与 v10 同一地址，现显示最新版）",
    "https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/"
   ],
   [
@@ -93,7 +113,7 @@
  ],
  "V4": [
   [
-   "GitHub Pages（与 v9 同一地址，现显示最新版）",
+   "GitHub Pages（与 v10 同一地址，现显示最新版）",
    "https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/"
   ],
   [
@@ -107,7 +127,7 @@
  ],
  "V5": [
   [
-   "GitHub Pages（与 v9 同一地址，现显示最新版）",
+   "GitHub Pages（与 v10 同一地址，现显示最新版）",
    "https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/"
   ],
   [
@@ -121,7 +141,7 @@
  ],
  "V6": [
   [
-   "GitHub Pages（与 v9 同一地址，现显示最新版）",
+   "GitHub Pages（与 v10 同一地址，现显示最新版）",
    "https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/"
   ],
   [
@@ -135,7 +155,7 @@
  ],
  "V7": [
   [
-   "GitHub Pages（与 v9 同一地址，现显示最新版）",
+   "GitHub Pages（与 v10 同一地址，现显示最新版）",
    "https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/"
   ],
   [

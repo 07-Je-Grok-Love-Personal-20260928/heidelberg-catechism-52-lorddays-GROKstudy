@@ -36,7 +36,8 @@ async def main():
         await pg.goto(BASE+'lorddays.html?nosw',wait_until='load')
         tb2=await pg.evaluate("document.getElementById('terms').parentElement.querySelectorAll('.tbar').length");ok(tb2>=20,f'term-distribution chart bars ({tb2})')
         # scroll state + click right after scroll
-        await pg.goto(BASE+'maps.html?nosw',wait_until='load');await pg.wait_for_timeout(1500)
+        await pg.goto(BASE+'maps.html?nosw',wait_until='load');await pg.wait_for_timeout(800)
+        await pg.evaluate("document.querySelector('svg.cmap[data-cm]').scrollIntoView({block:'center'})");await pg.wait_for_timeout(400)
         await pg.mouse.move(700,450)
         for i in range(6): await pg.mouse.wheel(0,200);await pg.wait_for_timeout(40)
         mid=await pg.evaluate("[document.documentElement.classList.contains('scr'),getComputedStyle(document.getElementById('scrshield')).display,document.querySelectorAll('svg.cmap.go:not(.done)').length]")

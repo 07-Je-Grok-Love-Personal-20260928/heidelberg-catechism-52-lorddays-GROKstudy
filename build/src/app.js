@@ -281,7 +281,7 @@ addEventListener('load',()=>setTimeout(schedPL,300),{once:true});
  /* ---------- v8: concept maps — draw routes once on view, toggle routes, highlight stops (events also drive the live map) ---------- */
  const cms=$$('svg.cmap[data-cm]');
  if(cms.length){const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const play=svg=>{svg.classList.remove('go','done');void svg.getBBox;requestAnimationFrame(()=>{svg.classList.add('go');if(!RM&&!svg.classList.contains('sm'))svg.querySelectorAll('animateMotion').forEach((a,i)=>{try{a.beginElementAt(.35+i*.5)}catch(_){}})})};
+  const play=svg=>{svg.classList.remove('done');try{void svg.getBBox()}catch(_){}requestAnimationFrame(()=>{svg.classList.add('go');if(!RM&&!svg.classList.contains('sm'))svg.querySelectorAll('animateMotion').forEach((a,i)=>{try{a.beginElementAt(.35+i*.5)}catch(_){}})})};
   if(RM||!('IntersectionObserver' in window))cms.forEach(s=>s.classList.add('go','done'));
   else{const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){cio.unobserve(e.target);afterScroll(()=>play(e.target))}}),{rootMargin:'0px 0px -12% 0px'});cms.forEach(s=>cio.observe(s))}
   const svgOf=id=>$$('svg.cmap[data-cm="'+id+'"]');

@@ -1,20 +1,27 @@
-# heidelberg-catechism-52-lorddays-20261024-v9-GROKstudy
+# heidelberg-catechism-52-lorddays-20261114-v10-GROKstudy
 
 > 《海德堡要理问答》52 主日全景深度解析：简体中文深度学习网站，共 129 问，持守欧陆改革宗立场（三项联合信条 + 三大普世信经）。
 
-## 🌐 当前在线访问（v9）
+## 🌐 当前在线访问（v10）
 
 | 平台 | 链接 |
 |---|---|
 | GitHub Pages | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
-| Surge | https://heidelberg-catechism-52-lorddays-20261024-v9-grokstudy.surge.sh |
-| Netlify | https://heidelberg-catechism-52-lorddays-20261024-v9-grokstudy.netlify.app |
+| Surge | https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.surge.sh |
+| Netlify | https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.netlify.app |
 
 📦 源码仓库：https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy
-🏷️ Release：[v9](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v9) · [v8](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v8) · [v7](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v7) · [v6](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v6) · [v5](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v5) · [v4](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v4) · [v3](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v3) · [v2](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v2) · [v1](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v1)
+🏷️ Release：[v10](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v10) · [v9](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v9) · [v8](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v8) · [v7](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v7) · [v6](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v6) · [v5](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v5) · [v4](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v4) · [v3](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v3) · [v2](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v2) · [v1](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v1)
 📝 更新记录页：`changelog.html`（站内顶栏版本徽章）
 
-## 🆕 更新说明（v9 · 2026-10-24）
+## 🆕 更新说明（v10 · 2026-11-14）
+
+- 🗺️ 底图源大幅扩充，并加上可见的「📚 底图」选择器：Esri 街道 / 地形 / 国家地理 / 自然地貌、CARTO Voyager / Positron / Dark Matter、OSM / OSM Humanitarian、OpenTopoMap、OpenFreeMap Liberty / Bright / Dark（矢量样式）、USGS 地形、GeoQ 智图、高德道路（无钥试探）。选择自动记住；「自动」按列表探测，8 秒无瓦片或连续失败即改用下一个，全部失败退回站内 Natural Earth。高德 / GeoQ 为中国可达源，采用 GCJ-02，与本站 WGS-84 地点有偏移，仅作底图；Stadia/Stamen 现需密钥，未接入。
+- 🖼️ 新增五张地图，各配示意图或情景图 / 讲解图 + 实时地图：🏰 1563 海德堡城情景图（城堡、圣灵堂、大学、内卡河）；⚔️ 三十年战争与普法尔茨命运（1618–1648 四幕讲解）；🌐 要理问答译本之路；🕊️ 今日欧陆改革宗教会分布（示意）；✝️ 福音地理（伯利恒—加利利—耶路撒冷，对应主日 14–19）。
+- 🖍️ 笔记标记 4.0：新增线框标记 [[…]] 与色条记忆块 ++…++；「🎯 复习」模式（Shift+M）淡化未标记文字，只留下记号。
+- ✅ 校验：原文逐字 0 差异；和合本经文 0 差异；十套主题 WCAG AA；v8 / v9 Playwright 测试通过。
+
+<details><summary>v9 更新说明</summary>
 
 - ☁️ 流畅度（重点）：逐帧剖析真实卡顿来源后对症处理——① 滚动期间放一层透明“滚动护罩”，静止的鼠标不再触发悬停样式与提示气泡的重算（替代 v8 对整个 main 切换 pointer-events 带来的整树样式重算）；② “滚动结束”改为 380 ms 真正静止后才算（scrollend 在滚轮两格之间也会触发），图表展开、路线描线等动画不会在手势中途启动；③ 滚动一开始就把正在播放的路线动画直接定格到终点；④ 空闲时按“离视口最近者优先”逐段预排版 content-visibility 区块（地图区块除外），快速滚动时不再临时排版整段；⑤ 背景云层漂移在滚动时暂停；⑥ 所有监听均为 passive，动画只用 transform / opacity。前后对比见 README 的 perf6 表。
 - 🎨 新增五套主题（共十套）：🌸 樱花粉霞 · 🍋 柠檬薄荷 · 🔥 暮光琥珀（深色）· 🌠 极光青紫（深色）· 🖋️ 水墨朱砂。选择器改为色板预览（底色 / 卡片 / “Aa” 字色 / 两个强调色），一键切换并带淡入过渡（尊重“减少动态效果”），自动保存，首屏绘制前应用（无闪烁）；十套主题的正文、弱化文字、强调色与荧光底全部通过 WCAG AA（contrast.py 0 失败）；地图、图表、标记颜色随主题变化（深色主题自动换深色底图）。
@@ -24,6 +31,8 @@
 - ✂️ 内容提炼：解说与要义重复的句子判定门槛从 0.62 降到 0.55，主日页更紧凑；原文一字未动。
 - 🔬 v9 收尾剖析（逐帧 trace）：① 预排版改为“排版一次后交还 content-visibility:auto”——布局结果保留，离屏时仍跳过绘制与分层（此前一直保持可见，长页面的 Layerize 变为 3–4 倍，移动端地图集只有 53–54 fps）；预排版在空闲期限内成批完成。② 移动端（lite）标题下划线改为静态，不再用 transform 过渡（移动端地图集 Layerize 540 → 80 ms）。③ 修正背景云层“滚动时暂停”的选择器优先级（v8 起实际上从未暂停）。结果（6× CPU 降速，3 次测量取中位数）：24 个“页面 × 设备”组合中 23 个 ≥ 58 fps，移动端速记中心（memory）为 57.5；v8 同法测量 15 个低于 58，最低 42.9。
 - ✅ 校验：原文逐字 0 差异；和合本经文 0 差异；十套主题 × 375 / 768 / 1024 / 1440 四个宽度无横向溢出；v8 Playwright 测试与目录测试通过。
+
+</details>
 
 <details><summary>v8 更新说明</summary>
 
@@ -335,12 +344,20 @@ python3 build/lh.py URL out.json 3      # Lighthouse
 git subtree push --prefix site origin gh-pages
 python3 build/v8_test.py URL OUTDIR     # v8 地图回退 + 导航簇测试
 python3 build/v9_test.py URL OUTDIR     # v9 主题 / 标记 / 滚动测试
+python3 build/v10_test.py URL OUTDIR    # v10 底图选择器 / 新地图（若有）
 python3 build/cpuf.py "URL_A|URL_B" desktop2x pages 1   # 不受抢占影响的帧率估算
-surge site heidelberg-catechism-52-lorddays-20261024-v9-grokstudy.surge.sh
-netlify deploy --prod --dir site --site 40d3ffa4-a31e-4096-a168-0e7eefdc222f
+surge site heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.surge.sh
+netlify deploy --prod --dir site --site ea86ca46-626f-4c72-9722-27b6414db9b9
 ```
 
 ## 🗂️ 版本历史
+
+### v10 · 2026-11-14 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v10)
+| 平台 | 链接 |
+|---|---|
+| GitHub Pages | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
+| Surge | https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.surge.sh |
+| Netlify | https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.netlify.app |
 
 ### v9 · 2026-10-24 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v9)
 | 平台 | 链接 |
@@ -352,49 +369,49 @@ netlify deploy --prod --dir site --site 40d3ffa4-a31e-4096-a168-0e7eefdc222f
 ### v8 · 2026-10-23 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v8)
 | 平台 | 链接 |
 |---|---|
-| GitHub Pages（与 v9 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
+| GitHub Pages（与 v10 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
 | Surge | https://heidelberg-catechism-52-lorddays-20261023-v8-grokstudy.surge.sh |
 | Netlify | https://heidelberg-catechism-52-lorddays-20261023-v8-grokstudy.netlify.app |
 
 ### v7 · 2026-10-23 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v7)
 | 平台 | 链接 |
 |---|---|
-| GitHub Pages（与 v9 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
+| GitHub Pages（与 v10 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
 | Surge | https://heidelberg-catechism-52-lorddays-20261023-v7-grokstudy.surge.sh |
 | Netlify | https://heidelberg-catechism-52-lorddays-20261023-v7-grokstudy.netlify.app |
 
 ### v6 · 2026-10-21 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v6)
 | 平台 | 链接 |
 |---|---|
-| GitHub Pages（与 v9 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
+| GitHub Pages（与 v10 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
 | Surge | https://heidelberg-catechism-52-lorddays-20261021-v6-grokstudy.surge.sh |
 | Netlify | https://heidelberg-catechism-52-lorddays-20261021-v6-grokstudy.netlify.app |
 
 ### v5 · 2026-10-21 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v5)
 | 平台 | 链接 |
 |---|---|
-| GitHub Pages（与 v9 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
+| GitHub Pages（与 v10 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
 | Surge | https://heidelberg-catechism-52-lorddays-20261021-v5-grokstudy.surge.sh |
 | Netlify | https://heidelberg-catechism-52-lorddays-20261021-v5-grokstudy.netlify.app |
 
 ### v4 · 2026-10-21 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v4)
 | 平台 | 链接 |
 |---|---|
-| GitHub Pages（与 v9 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
+| GitHub Pages（与 v10 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
 | Surge | https://heidelberg-catechism-52-lorddays-20261021-v4-grokser.surge.sh |
 | Netlify | https://heidelberg-catechism-52-lorddays-20261021-v4-grokser.netlify.app |
 
 ### v3 · 2026-10-20 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v3)
 | 平台 | 链接 |
 |---|---|
-| GitHub Pages（与 v9 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
+| GitHub Pages（与 v10 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
 | Surge | https://heidelberg-catechism-52-lorddays-20261020-v3-grokser.surge.sh |
 | Netlify | https://heidelberg-catechism-52-lorddays-20261020-v3-grokser.netlify.app |
 
 ### v2 · 2026-10-20 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v2)
 | 平台 | 链接 |
 |---|---|
-| GitHub Pages（与 v9 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
+| GitHub Pages（与 v10 同一地址，现显示最新版） | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
 | Surge | https://heidelberg-catechism-52-lorddays-20261020-v2-grokser.surge.sh |
 | Netlify | https://heidelberg-catechism-52-lorddays-20261020-v2-grokser.netlify.app |
 
