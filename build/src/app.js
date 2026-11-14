@@ -115,9 +115,9 @@ addEventListener('load',()=>setTimeout(schedPL,300),{once:true});
  tocBtn?.addEventListener('click',()=>{if(mobile())b.classList.toggle('toc-open');else{b.classList.toggle('toc-hidden');LS.set('hc-toc-hidden',b.classList.contains('toc-hidden'))}});
  $('.backdrop')?.addEventListener('click',()=>b.classList.remove('toc-open'));
  $$('#gnav a').forEach(a=>a.addEventListener('click',()=>{if(mobile())b.classList.remove('toc-open')}));
- const MIN=220,maxW=()=>Math.min(640,Math.round(innerWidth*(mobile()?.92:.7))),DEF=300;
+ const MIN=220,maxW=()=>Math.max(MIN,Math.round(innerWidth*(mobile()?0.92:0.6))),DEF=300;
  const setW=w=>{w=Math.max(MIN,Math.min(maxW(),Math.round(w)));root.style.setProperty('--side',w+'px');return w};
- if(rz&&side){let sx=0,sw=0,pend=null,fr=0,cur=0;
+ if(rz&&side){let sx=0,sw=0,pend=null,fr=0,cur=0;{const saved=LS.get('hc-side-w',0);if(saved)cur=setW(saved);else setW(side.getBoundingClientRect().width||DEF)}
   rz.addEventListener('pointerdown',e=>{e.preventDefault();rz.setPointerCapture(e.pointerId);sx=e.clientX;sw=side.getBoundingClientRect().width;b.classList.add('resizing')});
   rz.addEventListener('pointermove',e=>{if(!b.classList.contains('resizing'))return;pend=sw+e.clientX-sx;if(!fr)fr=requestAnimationFrame(()=>{fr=0;cur=setW(pend)})});
   const end=e=>{if(!b.classList.contains('resizing'))return;b.classList.remove('resizing');if(cur){LS.set('hc-side-w',cur)}};

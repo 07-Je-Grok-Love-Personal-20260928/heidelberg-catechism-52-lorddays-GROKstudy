@@ -6,7 +6,7 @@ D=json.load(open(os.path.join(ROOT,'data.json')))
 SER=json.load(open(os.path.join(ROOT,'sermons.json')))
 from notes1 import N as _a; from notes2 import N as _b; from notes3 import N as _c
 N={**_a,**_b,**_c}
-VERSION='v10.1'; DATE='2026-11-14'
+VERSION='v11'; DATE='2026-11-14'
 REPO='heidelberg-catechism-52-lorddays-GROKstudy'
 CCI='https://ccifellowship.org'
 def esc(s): return html.escape(s,quote=True)
@@ -128,9 +128,19 @@ def automark(soup):
 def number(soup):
     els=[]
     for el in soup.find_all(True):
-        if el.has_attr('data-lv'): els.append(el); continue
-        if el.name in ('h2','h3') and not _noauto(el):
-            el['data-lv']='1' if el.name=='h2' else '2'; els.append(el)
+        if el.has_attr('data-lv'):
+            # v11: TOC is 3 levels; h2/h3/h4 map to 1/2/3. Cap anything deeper.
+            try:
+                lv=int(el['data-lv'])
+                if el.name=='h2': el['data-lv']='1'
+                elif el.name=='h3': el['data-lv']='2'
+                elif el.name=='h4': el['data-lv']='3'
+                elif lv>3: el['data-lv']='3'
+            except ValueError:
+                pass
+            els.append(el); continue
+        if el.name in ('h2','h3','h4') and not _noauto(el):
+            el['data-lv']={'h2':'1','h3':'2','h4':'3'}[el.name]; els.append(el)
     c=[0,0,0,0,0]
     for i,el in enumerate(els):
         lv=int(el['data-lv'])
@@ -231,33 +241,110 @@ HEADJS=('try{var d=document.documentElement,L=localStorage,n=navigator,q=locatio
  'if(!lite&&(window.devicePixelRatio||1)<2)d.classList.add("glass");'
  'var w=JSON.parse(L.getItem("hc-side-w"));if(w)d.style.setProperty("--side",w+"px")}catch(e){}')
 # ===== v7: TOC rendered at build time (same structure the JS used to build) → no post-paint sidebar shift, less startup JS =====
+# default icons when a heading has no .ico (v11: every TOC entry has an icon)
+_TOC_ICO=[
+    (r'时间线|年代|故事线|年表', '⏳'),
+    (r'文化|风土|侧写', '🏞️'),
+    (r'相关主日|本主日|主日', '📅'),
+    (r'为什么|为何', '🏛️'),
+    (r'地点|地理|地图', '📍'),
+    (r'导览|概览|总览|目录', '🧭'),
+    (r'记忆|背诵|口诀|闪卡', '🧠'),
+    (r'应用|操练', '🏃'),
+    (r'原文|问答|信条|信经', '📖'),
+    (r'对比|对照', '⚖️'),
+    (r'标记|图例', '🖍️'),
+    (r'历史|人物', '📜'),
+    (r'圣经|圣约|经文', '✝️'),
+    (r'示意图|讲解|情景', '🖼️'),
+    (r'实时|交互', '🗺️'),
+]
+def _toc_icon(label, explicit=''):
+    if explicit: return explicit
+    s=label or ''
+    for pat,ico in _TOC_ICO:
+        if re.search(pat,s): return ico
+    return '▸'
+def _toc_clean(label, ico='', no=''):
+    s=re.sub(r'\s+',' ',label or '').strip()
+    if ico: s=re.sub(r'^'+re.escape(ico)+r'\s*','',s)
+    if no: s=re.sub(r'^'+re.escape(no)+r'\s*','',s)
+    s=re.sub(r'^[一二三四五六七八九十百]+、\s*','',s)
+    s=re.sub(r'^\d+\.\s*','',s)
+    # collapse duplicated title chunks "导览：导览："
+    s=re.sub(r'^(.{2,12})[:：]\s*\1','\\1',s)
+    return s.strip() or label
 def build_toc(html_):
     soup=BeautifulSoup(html_,'html.parser')
     heads=[h for h in soup.find_all(attrs={'data-lv':True}) if not h.find_parent('template')]
-    root={'lv':0,'kids':[]};stack=[root];n=0
+    root={'lv':0,'label':'','ico':'📑','kids':[]};stack=[root];n=0
     for h in heads:
-        lv=int(h['data-lv'])
+        try: lv=int(h['data-lv'])
+        except ValueError: continue
+        if lv<1: continue
+        if lv>3: lv=3
         while len(stack)>1 and stack[-1]['lv']>=lv: stack.pop()
+        icel=h.find('span',class_='ico')
+        ico=(icel.get_text().strip() if icel else '') or (h.get('data-ico') or '')
         label=h.get('data-toc')
         if not label:
-            c=BeautifulSoup(str(h),'html.parser'); ic=c.select_one('.ico'); it=(ic.get_text().strip()+' ') if ic else ''
+            c=BeautifulSoup(str(h),'html.parser')
             for x in c.select('.ico,.hn,.tools,small,.small,a'): x.decompose()
-            label=it+re.sub(r'\s+',' ',c.get_text()).strip()
+            label=re.sub(r'\s+',' ',c.get_text()).strip()
         no=h.get('data-no','') if not ('qa' in (h.get('class') or []) or h.find_parent(class_='qa')) else ''
-        node={'lv':lv,'id':h.get('id',''),'label':label,'no':no,'kids':[]}
+        label=_toc_clean(label, ico, no)
+        ico=_toc_icon(label, ico)
+        # L1 always numbered
+        if lv==1 and not no:
+            # temporary; re-numbered when rendering L1 siblings
+            no=''
+        node={'lv':lv,'id':h.get('id',''),'label':label,'no':no,'ico':ico,'kids':[]}
         stack[-1]['kids'].append(node);stack.append(node);n+=1
     if not n: return ''
+    # number any L1 still missing 一、
+    def cnum_safe(i):
+        try: return cnum(i)
+        except Exception: return str(i)
+    def num_l1(nodes):
+        k=0
+        for x in nodes:
+            if x['lv']==1:
+                k+=1
+                if not x['no']: x['no']=cnum_safe(k)+'、'
+            num_l1(x['kids'])
+    num_l1(root['kids'])
+    # distinct titles: if a label appears more than once in the tree, prefix with the parent short name
+    def walk(nodes, parent=None, acc=None):
+        acc=[] if acc is None else acc
+        for x in nodes:
+            acc.append((x,parent)); walk(x['kids'], x, acc)
+        return acc
+    bag={}
+    for x,parent in walk(root['kids']):
+        key=re.sub(r'\s+','',x['label'])
+        bag.setdefault(key,[]).append((x,parent))
+    for key,grp in bag.items():
+        if len(grp)<2: continue
+        for x,parent in grp:
+            if not parent or not parent.get('label'): continue
+            short=re.sub(r'[：:].*','',parent['label'])
+            short=re.sub(r'\s+','',short)[:16]
+            if short and short not in x['label']:
+                x['label']=f"{short} · {x['label']}"
     few=n<=14
     def r(nodes):
         out=[]
         for x in nodes:
             has=bool(x['kids']);cls='l'+str(x['lv'])+(' closed' if has and x['lv']!=1 and not few else '')
-            tw='<button class="tw" type="button" aria-label="展开/折叠">▾</button>' if has else ''
+            tw='<button class="tw" type="button" aria-label="展开/折叠">▾</button>' if has else '<span class="tw sp" aria-hidden="true"></span>'
             nos=f'<span class="no">{esc(x["no"])}</span>' if x['no'] else ''
-            tt=esc((x['no']+' ' if x['no'] else '')+x['label'])
-            out.append(f'<li class="{cls}"><div class="row">{tw}<a href="#{x["id"]}" title="{tt}">{nos}{esc(x["label"])}</a></div>'+(f'<ul>{r(x["kids"])}</ul>' if has else '')+'</li>')
+            ico=f'<span class="tico" aria-hidden="true">{esc(x["ico"])}</span>'
+            full=(x['no']+' ' if x['no'] else '')+x['ico']+' '+x['label']
+            tt=esc(full)
+            out.append(f'<li class="{cls}"><div class="row">{tw}<a href="#{x["id"]}" title="{tt}">{nos}{ico}<span class="tlab">{esc(x["label"])}</span></a></div>'+(f'<ul>{r(x["kids"])}</ul>' if has else '')+'</li>')
         return ''.join(out)
     return '<ul>'+r(root['kids'])+'</ul>'
+
 def page(path,title,body,desc='',head=''):
     depth=path.count('/'); pre='../'*depth
     sect=path.split('/')[0] if '/' in path else path
