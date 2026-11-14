@@ -20,6 +20,16 @@ EXPAND='''()=>{
   document.querySelectorAll('.lmsrc').forEach((s,i)=>{if(i===0)s.classList.add('open')});
   document.querySelectorAll('.mklgd, details.mklgd, .legend details, details.legend').forEach(d=>d.open=true);
 }'''
+CLICK='''()=>{
+  const vis=el=>{const r=el.getBoundingClientRect(),cs=getComputedStyle(el);return r.width&&r.height&&cs.display!=='none'&&cs.visibility!=='hidden'};
+  document.querySelectorAll('details > summary').forEach(s=>{try{if(vis(s)&&!s.parentElement.open)s.click()}catch(e){}});
+  const nav=document.querySelector('#navc .nv-tg, #navc button');
+  if(nav&&vis(nav)&&!document.getElementById('navc').classList.contains('open')){try{nav.click()}catch(e){}}
+  const ms=document.querySelector('.lmsrc > .lb[data-ms], .lmsrc > button');
+  if(ms&&vis(ms)&&!document.querySelector('.lmsrc.open')){try{ms.click()}catch(e){}}
+  const thb=document.querySelector('#thp > button');
+  if(thb&&vis(thb)&&!document.getElementById('thp')?.classList.contains('open')){try{thb.click()}catch(e){}}
+}'''
 JS='''()=>{
 const W=document.documentElement.clientWidth,H=innerHeight;
 const res={sw:document.documentElement.scrollWidth,W,off:[],ov:[],hit:[],intended:[]};
@@ -75,6 +85,7 @@ async def main():
                     try:
                         await pg.goto(BASE+u+Q,wait_until='domcontentloaded',timeout=60000)
                         await pg.evaluate(EXPAND)
+                        await pg.evaluate(CLICK)
                         await pg.evaluate("window.scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'})")
                         await pg.wait_for_timeout(80)
                         await pg.evaluate("window.scrollTo({top:0,behavior:'instant'})")
