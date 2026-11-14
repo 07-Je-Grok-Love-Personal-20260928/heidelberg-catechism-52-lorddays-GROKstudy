@@ -1,0 +1,48 @@
+{
+ "profile": "mobile 375x812 DPR3",
+ "method": "cpuf tdur×6, 90 wheels ×160px @33ms, median of 3",
+ "base": "http://127.0.0.1:8780/",
+ "load_at_start": "after QA, falling ~4 / 10 / 17",
+ "when": "2026-11-14 16:02 CST (Asia/Taipei)",
+ "results": {
+  "index.html": {
+   "fps_est": [
+    59.8,
+    60.0,
+    59.5
+   ],
+   "median": 59.8,
+   "cpu6_ms": [
+    538,
+    524,
+    543
+   ]
+  },
+  "memory.html": {
+   "fps_est": [
+    59.8,
+    59.8,
+    59.8
+   ],
+   "median": 59.8,
+   "cpu6_ms": [
+    1080,
+    1084,
+    1068
+   ]
+  },
+  "maps.html": {
+   "fps_est": [
+    58.3,
+    58.9,
+    58.3
+   ],
+   "median": 58.3,
+   "cpu6_ms": [
+    1100,
+    1023,
+    1041
+   ]
+  }
+ }
+}
