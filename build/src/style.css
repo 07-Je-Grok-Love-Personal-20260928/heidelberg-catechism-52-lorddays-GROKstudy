@@ -67,11 +67,11 @@ img{max-width:100%;height:auto}
 .sky{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;contain:strict;background:radial-gradient(60vmax 50vmax at 0% 0%,var(--sky1),transparent 70%),radial-gradient(60vmax 50vmax at 100% 100%,var(--sky2),transparent 70%),var(--bg)}
 .sky i{display:none}
 /* v7: ONE composited layer carries both "clouds" (two gradients on one element); paused while scrolling / hidden */
-html.anim .sky i{display:block;position:absolute;left:-6vw;top:-6vh;width:112vw;height:112vh;opacity:.5;will-change:transform;pointer-events:none;
+html.anim .sky i{display:block;position:absolute;left:-6vw;top:-6vh;width:112vw;height:112vh;opacity:.58;will-change:transform;pointer-events:none;
  background:radial-gradient(38vmax 32vmax at 18% 16%,var(--sky1),transparent 70%),radial-gradient(40vmax 32vmax at 84% 86%,var(--sky2),transparent 70%);
- animation:drift 48s ease-in-out infinite alternate}
+ animation:drift 60s cubic-bezier(.45,.05,.55,.95) infinite alternate}
 html .sky.paused i{animation-play-state:paused} /* v9.1: must out-rank html.anim .sky i */
-@keyframes drift{from{transform:translate3d(-2.5vw,-2vh,0)}to{transform:translate3d(2.5vw,2.5vh,0)}}
+@keyframes drift{from{transform:translate3d(-3vw,-2.2vh,0)}to{transform:translate3d(3vw,2.8vh,0)}}
 /* --- topbar (one of the few blurred elements) --- */
 .topbar{position:sticky;top:0;z-index:50;height:var(--top);display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--bg2);border-bottom:1px solid var(--bd)}
 html.glass .topbar{background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}

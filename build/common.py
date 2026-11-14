@@ -75,6 +75,11 @@ def cnum(i):
 def sec(id,ico,title,inner,cls=''):
     title=re.sub(r'^[一二三四五六七八九十]+、','',title)
     return f'<section class="sec {cls}"><h2 id="{id}"><span class="ico">{ico}</span>{title}</h2>{inner}</section>'
+def hh(lv,id_,ico,title):
+    """h2/h3/h4 with icon; number() maps them to TOC levels 1/2/3."""
+    tag={1:'h2',2:'h3',3:'h4'}[lv]
+    ic=f'<span class="ico">{ico}</span>' if ico else ''
+    return f'<{tag} id="{id_}">{ic}{title}</{tag}>'
 # ---------- marking system ----------
 MD=[(r'\*\*(.+?)\*\*','mk-b'),(r'==(.+?)==','mk-k'),(r'~~(.+?)~~','mk-w'),(r'__(.+?)__','mk-u'),(r'::(.+?)::','mk-d'),(r'!!(.+?)!!','mk-r'),(r'@@(.+?)@@','mk-p'),(r'##(.+?)##','mk-l'),(r'%%(.+?)%%','mk-t'),(r'\^\^(.+?)\^\^','mk-bg'),(r';;(.+?);;','mk-e'),(r'\[\[(.+?)\]\]','mk-box'),(r'\+\+(.+?)\+\+','mk-band')]
 def md(s):

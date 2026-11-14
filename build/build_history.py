@@ -27,7 +27,7 @@ def gantt():
     for yv in [1400,1450,1500,1550,1600,1650,1800,2000]:
         o.append(f'<line x1="{X(yv):.0f}" x2="{X(yv):.0f}" y1="2" y2="136" style="stroke:var(--bd)"/><text x="{X(yv):.0f}" y="148" text-anchor="middle" style="fill:var(--muted);font-size:10px">{yv}</text>')
     o.append('</svg>'); return ''.join(o)
-his+=sec('timeline','⏳','时间线（1386–2015）：五个时期 · 点击圆点跳转','<div class="card reveal" style="margin-bottom:14px"><h3 id="tl-gantt">📊 五个时期一览（1650 年后轴线压缩）</h3><div class="chart mm">'+gantt()+'</div></div>'+timeline_html())
+his+=sec('timeline','⏳','时间线（1386–2015）：五个时期 · 点击圆点跳转','<div class="card reveal" style="margin-bottom:14px">{hh(2,"tl-gantt","📊","五个时期一览（1650 年后轴线压缩）")}<div class="chart mm">'+gantt()+'</div></div>'+timeline_html())
 import mapsvg, build_maps as BM
 _LP={'诺伊施塔特':'l','弗兰肯塔尔':'b','瓦朗谢讷':'b','图尔奈':'l','莱顿':'t','阿姆斯特丹':'r','多德雷赫特':'l','安特卫普':'r','韦瑟尔':'r','马尔堡':'r','赫博恩':'t','特里尔':'l','伦敦':'r','埃姆登':'r'}
 ERAY={'bg':'1386–1555','pf':'1556–1583','nl':'1561–1581','dt':'1609–1619','lg':'1622–'}
@@ -40,9 +40,9 @@ HMAP=dict(id='hist',page='history',ico='🗺️',title='地理：交互地图 + 
 _cm=mapsvg.concept(HMAP)
 _rtl='<div class="rtl" role="group" aria-label="路线开关">'+''.join(f'<button type="button" class="rtb on" data-rt="hist:{r[0]}" style="--c:var({r[2]})" aria-pressed="true" title="{esc(r[5])}"><i class="sw {r[3]}"></i>{esc(r[1])}</button>' for r in HMAP['routes'])+'<button type="button" class="rtb play" data-play="hist">▶ 播放路线</button></div>'
 his+=sec('geo','🗺️','地理：概念图 + 实时地图 + 地点卡片（与主日相连）',callout('geo','地理',md('**三条水流汇向一处**：瑞士的改革宗神学（苏黎世、日内瓦）、萨克森的路德宗传统（维滕堡）与尼德兰的难民教会，在莱茵河—内卡河交汇的==海德堡==相遇，又沿莱茵河北上，在==多特==汇合。'))+
-  f'<div id="map" class="mpair"><figure class="mcard cm reveal"><figcaption>🎨 概念示意图 <span class="small muted">· 动画路线 · 编号地点</span></figcaption>{_cm}</figure><figure class="mcard lv"><figcaption>🛰️ 实时交互地图 <span class="small muted">· 拖动 / 双指缩放 · 点击地点</span></figcaption>{BM.live_box(HMAP)}</figure></div>'+_rtl+
+  f'<div id="map" class="mpair"><figure class="mcard cm reveal">{hh(3,"geo-art","🎨","历史舞台：概念示意图")}<p class="small muted" style="margin:0 0 6px">动画路线 · 编号地点</p>{_cm}</figure><figure class="mcard lv">{hh(3,"geo-live","🛰️","历史舞台：实时交互地图")}<p class="small muted" style="margin:0 0 6px">拖动 / 双指缩放 · 点击地点</p>{BM.live_box(HMAP)}</figure></div>'+_rtl+
   '<p class="small muted">时间线的“时期”按钮会同步淡化两幅地图上不属于该时期的地点；地点卡片的“在地图上查看”会让实时地图飞到该处。更多专题地图见 <a href="maps.html">🗺️ 历史地图集</a> 与 <a href="geo-bible.html">🏜️ 圣经地理</a>。</p>'+BM.mapdef(HMAP)+
-  '<h3 id="places">📍 地点卡片（21 处）</h3>'+places_html())
+  hh(2,'places','📍','地点卡片（21 处）')+places_html())
 his+=sec('people','👥','四、人物与图像',pp)
 his+=sec('culture','🏞️','区域文化：六个舞台',regions_html())
 his+='<script>window.hcFly=function(i){window.hcHL&&hcHL("hist","p"+i,1)};window.hcMapEra=function(e){document.querySelectorAll("svg.cmap[data-cm=hist] .pm").forEach(function(g){g.classList.toggle("dim",e!=="all"&&g.dataset.era!==e)});dispatchEvent(new CustomEvent("hcera",{detail:{map:"hist",era:e}}))}</script>'+BM.MAPJS('')

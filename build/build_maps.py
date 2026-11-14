@@ -20,27 +20,28 @@ def quote_html(m):
     return ''.join(f'<p class="vq">“<span class="mk-k">{esc(q)}</span>”（{b}{c}:{a}{"-"+str(z) if z!=a else ""}）</p>' for q,b,c,a,z in m.get('quotes',[]))
 def map_section(m,pre='',num=None):
     P=mapsvg.Proj(m['bbox']); uid=m['id']
+    short=m.get('short') or m['title']
     rtl='<div class="rtl" role="group" aria-label="路线开关">'+''.join(f'<button type="button" class="rtb on" data-rt="{uid}:{r[0]}" style="--c:var({r[2]})" aria-pressed="true" title="{esc(r[5] or r[1])}"><i class="sw {r[3]}"></i>{esc(r[1])}</button>' for r in m['routes'])+(f'<button type="button" class="rtb play" data-play="{uid}">▶ 播放路线</button>' if len(m['routes'])<6 or uid=='dort' else '')+'</div>'
-    stops='<ol class="stops">'+''.join(f'<li><button type="button" data-pk="{uid}:{p[0]}" style="--c:var({p[7]})"><b>{i+1}</b>{esc(p[1])}<small>{esc(p[5])}</small></button></li>' for i,p in enumerate(m['places']))+'</ol>'
-    cap={'scene':'🎨 情景图','explainer':'🎨 讲解图','schematic':'🎨 示意图','concept':'🎨 概念示意图'}.get(m.get('art','schematic'),'🎨 概念示意图')
-    pair=(f'<div class="mpair"><figure class="mcard cm reveal"><figcaption>{cap} <span class="small muted">· 动画 · 编号地点</span></figcaption>{mapsvg.illustrate(m)}</figure>'
-          f'<figure class="mcard lv"><figcaption>🛰️ 实时交互地图 <span class="small muted">· 拖动 / 双指缩放 · 点击地点</span></figcaption>{live_box(m,P)}</figure></div>')
+    stops=hh(3,uid+'-stops','📍',esc(short)+'：站点')+'<ol class="stops">'+''.join(f'<li><button type="button" data-pk="{uid}:{p[0]}" style="--c:var({p[7]})"><b>{i+1}</b>{esc(p[1])}<small>{esc(p[5])}</small></button></li>' for i,p in enumerate(m['places']))+'</ol>'
+    cap={'scene':'情景图','explainer':'讲解图','schematic':'示意图','concept':'概念示意图'}.get(m.get('art','schematic'),'概念示意图')
+    pair=(f'<div class="mpair"><figure class="mcard cm reveal">{hh(3,uid+"-art","🎨",esc(short)+"："+cap)}<p class="small muted" style="margin:0 0 6px">动画 · 编号地点</p>{mapsvg.illustrate(m)}</figure>'
+          f'<figure class="mcard lv">{hh(3,uid+"-live","🛰️",esc(short)+"：实时交互地图")}<p class="small muted" style="margin:0 0 6px">拖动 / 双指缩放 · 点击地点</p>{live_box(m,P)}</figure></div>')
     story='<ol class="tlm">'+''.join(f'<li><span class="y">{esc(y)}</span><span>{md(t)}</span></li>' for y,t in m['story'])+'</ol>'
     tbl='<div class="tbl"><table><thead><tr><th>#</th><th>地点</th><th>年代</th><th>意义</th></tr></thead><tbody>'+''.join(f'<tr><td><b style="color:var({p[7]})">{i+1}</b></td><td><b>{esc(p[1])}</b><br><span class="small muted">{esc(p[2])}</span></td><td class="nw">{esc(p[5])}</td><td>{esc(p[6])}</td></tr>' for i,p in enumerate(m['places']))+'</tbody></table></div>'
     lds='<div class="ldlinks">'+''.join(f'<div class="ldl">{ldlink(n,pre)}<span class="small">{esc(w)}</span></div>' for n,w in m['lds'])+'</div>'
     extra=''
-    if m.get('worldpts'): extra+=f'<div class="card reveal"><h3 id="{uid}-world">🌍 走向全球：移民与宣教</h3><div class="chart">{mapsvg.world_inset(m)}</div><p class="small muted">示意：从海德堡出发的线条只表示传播方向，不表示实际航线。</p></div>'
-    if m.get('deleg'): extra+=f'<div class="card reveal"><h3 id="{uid}-bars">📊 外国代表团人数（共 27 人）</h3>{deleg_bars(m)}</div>'
-    if uid=='ref': extra+=f'<div class="card reveal"><h3 id="ref-dots">📈 改教城市时间轴：一个世纪的接力</h3>{ref_dots(m)}</div>'
-    if uid=='trans': extra+=f'<div class="card reveal"><h3 id="trans-bars">📊 主要译本与年份（示意）</h3>{trans_bars()}</div>'
-    if uid=='today': extra+=f'<div class="card reveal"><h3 id="today-note">⚖️ 两个改革宗家庭</h3><p>{md("**欧陆改革宗**以三项联合信条为准则；**长老会改革宗**以威斯敏斯特准则为准则。二者同源（改革宗神学），文件与教会政治不同。本图标出的是仍认信或使用要理问答的若干地点，**不是世界改革宗的完整地图**。")}</p></div>'
+    if m.get('worldpts'): extra+=f'<div class="card reveal">{hh(2,uid+"-world","🌍",esc(short)+"：走向全球（移民与宣教）")}<div class="chart">{mapsvg.world_inset(m)}</div><p class="small muted">示意：从海德堡出发的线条只表示传播方向，不表示实际航线。</p></div>'
+    if m.get('deleg'): extra+=f'<div class="card reveal">{hh(2,uid+"-bars","📊",esc(short)+"：外国代表团人数（共 27 人）")}{deleg_bars(m)}</div>'
+    if uid=='ref': extra+=f'<div class="card reveal">{hh(2,"ref-dots","📈","改教城市时间轴：一个世纪的接力")}{ref_dots(m)}</div>'
+    if uid=='trans': extra+=f'<div class="card reveal">{hh(2,"trans-bars","📊","主要译本与年份（示意）")}{trans_bars()}</div>'
+    if uid=='today': extra+=f'<div class="card reveal">{hh(2,"today-note","⚖️","两个改革宗家庭")}<p>{md("**欧陆改革宗**以三项联合信条为准则；**长老会改革宗**以威斯敏斯特准则为准则。二者同源（改革宗神学），文件与教会政治不同。本图标出的是仍认信或使用要理问答的若干地点，**不是世界改革宗的完整地图**。")}</p></div>'
 
     inner=(callout('core','本质',md(m['core']))+pair+rtl+stops+extra+
-      f'<div class="grid g2"><div class="card pan why reveal"><h3 id="{uid}-why">🏛️ 为什么与要理问答有关</h3><p>{md(m["why"])}</p>{quote_html(m)}</div>'
-      f'<div class="card pan cov reveal"><h3 id="{uid}-story">⏳ 时间线</h3>{story}</div></div>'
-      f'<div class="grid g2"><div class="card pan app reveal"><h3 id="{uid}-cul">🏞️ 文化侧写</h3><ul class="clean">{"".join(f"<li>{md(x)}</li>" for x in m["culture"])}</ul></div>'
-      f'<div class="card pan xref reveal"><h3 id="{uid}-ld">📅 相关主日</h3>{lds}</div></div>'
-      f'<details class="card reveal ptbl"><summary><b>📋 地点一览（{len(m["places"])} 处 · 点击展开）</b></summary>{tbl}</details>'
+      f'<div class="grid g2"><div class="card pan why reveal">{hh(2,uid+"-why","🏛️",esc(short)+"：为何写进要理问答")}<p>{md(m["why"])}</p>{quote_html(m)}</div>'
+      f'<div class="card pan cov reveal">{hh(2,uid+"-story","⏳",esc(short)+"：时间线")}{story}</div></div>'
+      f'<div class="grid g2"><div class="card pan app reveal">{hh(2,uid+"-cul","🏞️",esc(short)+"：文化侧写")}<ul class="clean">{"".join(f"<li>{md(x)}</li>" for x in m["culture"])}</ul></div>'
+      f'<div class="card pan xref reveal">{hh(2,uid+"-ld","📅",esc(short)+"：相关主日")}{lds}</div></div>'
+      f'<details class="card reveal ptbl"><summary>{hh(3,uid+"-tbl","📋",esc(short)+"：地点一览（"+str(len(m["places"]))+" 处）")}</summary>{tbl}</details>'
       +callout('hook','记忆钩',f'<b style="font-family:var(--serif);font-size:1.1em">{esc(m["hook"])}</b>')+mapdef(m))
     return sec('m-'+uid,m['ico'],m['title'],inner,'msec')
 def deleg_bars(m):
@@ -106,7 +107,7 @@ def build():
     npl=sum(len(m['places']) for m in H); nrt=sum(len(m['routes']) for m in H)
     kpi=''.join(f'<div><b>{v}</b>{t}</div>' for v,t in [(len(H),'张历史地图'),(npl,'个地点'),(nrt,'条路线'),(len(B),'张圣经地理')])
     hero=f'''<section class="hero reveal hero-map"><span class="chip d">🗺️ 历史 · 地图 · 文化</span><h1>历史地图集：要理问答走过的路</h1><p class="lead">历史地图，一条主线：<b>改教的水流</b>在海德堡汇合 → 写成<span class="mk-k">安慰之书</span> → 被<b>难民</b>带往北方 → 在<b>多特</b>成为合一信条。每张地图都配有一幅<b>概念示意图</b>（动画路线）和一幅<b>实时交互地图</b>（全球可用，离线可退回）。</p><div class="kpi">{kpi}</div></section>'''
-    ov=sec('m-overview','🧭','导览：导览：地图与故事线',callout('core','一句话','**谁写的**（作者路线）→ **从哪里来**（改教传播）→ **在什么处境写成**（1563 普法尔茨）→ **怎样传开**（难民之路）→ **怎样被确认**（多特大会）。')+atlas_cards(MD.MAPS)+f'<div class="card reveal" style="margin-top:14px"><h3 id="ov-lanes">📊 各图年代跨度（点击跳转）</h3><div class="chart mm">{lanes_chart(MD.MAPS)}</div></div>')
+    ov=sec('m-overview','🧭','导览：导览：地图与故事线',callout('core','一句话','**谁写的**（作者路线）→ **从哪里来**（改教传播）→ **在什么处境写成**（1563 普法尔茨）→ **怎样传开**（难民之路）→ **怎样被确认**（多特大会）。')+atlas_cards(MD.MAPS)+f'<div class="card reveal" style="margin-top:14px">{hh(2,"ov-lanes","📊","各图年代跨度（点击跳转）")}<div class="chart mm">{lanes_chart(MD.MAPS)}</div></div>')
     order=['ref','uo','hd1563','pal','tyw','mig','dort','trans','today']
     body=hero+ov+''.join(map_section(MD.BY[k]) for k in order)+SRCNOTE+f'<div class="pager"><a href="history.html">⬅ 🗺️ 历史地理（时间线 · 人物 · 文化）</a><a class="r" href="geo-bible.html">📖 圣经地理 ➡</a></div>'+MAPJS('')
     page('maps.html','历史地图集',body,'海德堡要理问答历史地图集：1563 普法尔茨、宗教改革传播、乌尔西努与俄利维亚努、难民之路、多特大会代表')
@@ -123,6 +124,6 @@ def ld_block(n):
     mid,why=items[0]; m=MD.BY[mid]; href=lambda m:f'../{"maps" if m["page"]=="maps" else "geo-bible"}.html#m-{m["id"]}'
     more=''.join(f'<a class="chip" href="{href(MD.BY[i])}">{MD.BY[i]["ico"]} {esc(MD.BY[i]["short"])}：{esc(w)}</a>' for i,w in items[1:])
     inner=(f'<div class="grid g2 ldgeo"><a class="card reveal mthumb" href="{href(m)}" aria-label="打开地图：{esc(m["title"])}">{mapsvg.illustrate(m,W=420,small=True,uid=m['id']+'-s')}</a>'
-           f'<div class="card pan why reveal"><h3 id="geo-why">{m["ico"]} {esc(m["title"])}</h3>{callout("hist","历史",md(why+"。"))}<p>{md(m["core"])}</p><div class="btns"><a class="btn pri" href="{href(m)}">🗺️ 打开概念图 + 实时地图</a></div>{("<div class=tags style=margin-top:10px>"+more+"</div>") if more else ""}</div></div>')
+           f'<div class="card pan why reveal">{hh(2,"geo-why",m["ico"],esc(m["title"]))}{hh(3,"geo-art","🎨",esc(m.get("short") or m["title"])+"：舞台示意")}{callout("hist","历史",md(why+"。"))}<p>{md(m["core"])}</p><div class="btns"><a class="btn pri" href="{href(m)}">🗺️ 打开概念图 + 实时地图</a></div>{("<div class=tags style=margin-top:10px>"+more+"</div>") if more else ""}</div></div>')
     return sec('geo','🗺️','历史与地理：这一主日的舞台',inner)
 if __name__=='__main__': build()
