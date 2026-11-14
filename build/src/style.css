@@ -217,6 +217,11 @@ html.mkrev .mk-k,html.mkrev .mk-b,html.mkrev .mk-g,html.mkrev .mk-r,html.mkrev .
 body.recite .qa .a{color:transparent;cursor:pointer;user-select:none;background:repeating-linear-gradient(transparent 0 .55em,color-mix(in srgb,var(--muted) 30%,transparent) .55em 1.45em,transparent 1.45em 2em);border-radius:6px}
 body.recite .qa .a *{color:transparent!important;background:none!important;text-decoration:none!important}
 body.recite .qa .a.show{color:inherit;background:none}body.recite .qa .a.show *{color:revert!important}
+body.recite .art>p:not(.src),body.recite .creed p{color:transparent;cursor:pointer;-webkit-user-select:none;user-select:none;background:repeating-linear-gradient(transparent 0 .55em,color-mix(in srgb,var(--muted) 30%,transparent) .55em 1.45em,transparent 1.45em 2em);border-radius:6px}
+body.recite .art>p:not(.src) *,body.recite .creed p *{color:transparent!important;background:none!important;text-decoration:none!important}
+body.recite .art>p.show,body.recite .creed p.show{color:inherit;background:none}
+body.recite .art>p.show *,body.recite .creed p.show *{color:revert!important}
+
 .src{font-size:12.5px;color:var(--muted)}.src a{color:var(--muted);text-decoration:underline dotted}
 /* chain */
 .chain{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}

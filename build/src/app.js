@@ -140,10 +140,10 @@ addEventListener('load',()=>setTimeout(schedPL,300),{once:true});
  /* ---------- tabs ---------- */
  $$('.tabs').forEach(t=>{const bs=$$('button',t),ps=$$(':scope>.tabp',t.parentElement);bs.forEach((x,i)=>x.addEventListener('click',()=>{bs.forEach((y,j)=>y.classList.toggle('on',i===j));ps.forEach((p,j)=>p.classList.toggle('on',i===j))}))});
  /* ---------- recite / footnotes ---------- */
- $('#reciteBtn')?.addEventListener('click',()=>{b.classList.toggle('recite');$$('.qa .a.show').forEach(x=>x.classList.remove('show'));toast(b.classList.contains('recite')?'🙈 背诵模式：点击答案显示':'👀 阅读模式')});
+ $('#reciteBtn')?.addEventListener('click',()=>{b.classList.toggle('recite');$$('.qa .a.show, .art > p.show, .creed p.show').forEach(x=>x.classList.remove('show'));toast(b.classList.contains('recite')?'🙈 背诵模式：点击遮住的段落显示':'👀 阅读模式')});
  $('#supBtn')?.addEventListener('click',()=>{b.classList.toggle('nosup');toast(b.classList.contains('nosup')?'已隐藏经文脚注编号':'已显示经文脚注编号')});
  document.addEventListener('click',e=>{
-  const a=e.target.closest('.qa .a');if(a&&b.classList.contains('recite')){a.classList.toggle('show');return}
+  const a=e.target.closest('.qa .a, .art > p:not(.src), .creed p');if(a&&b.classList.contains('recite')){a.classList.toggle('show');return}
   const s=e.target.closest('[data-speak]');if(s){const box=s.closest('.qa,.art,.creed,[data-speakbox]');if(!('speechSynthesis' in window)){toast('此浏览器不支持朗读');return}if(speechSynthesis.speaking){speechSynthesis.cancel();toast('⏹ 已停止');return}const u=new SpeechSynthesisUtterance(clean(box));u.lang='zh-CN';u.rate=.95;speechSynthesis.speak(u);toast('🔊 朗读中…再次点击停止');return}
   const cp=e.target.closest('[data-copy]');if(cp){navigator.clipboard?.writeText(clean(cp.closest('.qa,.art'))).then(()=>toast('📋 已复制'));return}
   const f=e.target.closest('.fc');if(f)f.classList.toggle('flip')});

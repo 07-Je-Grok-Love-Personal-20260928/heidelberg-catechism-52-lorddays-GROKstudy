@@ -79,7 +79,7 @@ for s in D['cd']:
 page('texts/cd.html','多特信经 全文阅读版',''.join(b),'多特信经全文')
 # creeds
 cc={'apostles-creed':('var(--gold)','约公元400年（罗马教会信经，可追溯更早）','西方教会洗礼认信','🕊️'),'nicene-creed':('var(--deliv)','325 尼西亚 / 381 君士坦丁堡','驳斥亚流主义，确立子与圣灵的神性','🔥'),'athanasian-creed':('var(--intro)','约6世纪上半叶（西方）','三位一体与基督神人二性的精确表述','👑')}
-b=[f'<section class="hero reveal"><span class="chip">⛪ 三大普世信经 · 背诵版</span><h1>使徒信经 · 尼西亚信经 · 亚他那修信经</h1><p class="lead">信经正文与简介一字不改地引自 <a href="{CCI}/books/book-of-praise/creeds" target="_blank" rel="noopener">ccifellowship.org · 普世信经</a>。</p><div class="btns" style="margin-top:14px"><button class="btn" onclick="window.print()">🖨️ 打印</button></div></section>',
+b=[f'<section class="hero reveal"><span class="chip">⛪ 三大普世信经 · 背诵版</span><h1>使徒信经 · 尼西亚信经 · 亚他那修信经</h1><p class="lead">信经正文与简介一字不改地引自 <a href="{CCI}/books/book-of-praise/creeds" target="_blank" rel="noopener">ccifellowship.org · 普世信经</a>。可开启背诵模式，点击逐段显示。</p><div class="btns" style="margin-top:14px"><button class="btn" id="reciteBtn">🙈 背诵模式（点击逐段显示）</button><button class="btn" onclick="window.print()">🖨️ 打印</button></div></section>',
    f'<section class="sec"><h2 id="intro"><span class="ico">ℹ️</span>普世信经简介（原文）</h2><div class="card reading">{intro(D["creeds_intro"])}</div></section>']
 for cr in D['creeds']:
     c,date,aim,ic=cc[cr['slug']]
@@ -94,6 +94,6 @@ cards=[('hc.html','📜','海德堡要理问答','1563 · 52 主日 · 129 问',
 ('creeds.html','⛪','三大普世信经','使徒 · 尼西亚 · 亚他那修','与历代众圣徒同一信仰','var(--gold)',3)]
 mx=129
 hub+=sec('forms','📚','原文目录','<div class="grid g2">'+''.join(f'<a class="card lift reveal" href="{h}" style="border-top:4px solid {c}"><h3 id="hub-{h[:-5]}" style="color:{c}">{i} {t}</h3><p class="small muted" style="margin:0">{d}</p><p style="margin:.4em 0">{x}</p><svg viewBox="0 0 300 14" style="width:100%;height:14px"><rect width="300" height="14" rx="7" fill="currentColor" opacity=".08"/><g class="barx" style="transform-box:fill-box"><rect width="{max(n/mx*300,14):.0f}" height="14" rx="7" fill="{c}"/></g></svg><p class="small muted" style="margin:.2em 0 0">{n} 个条目</p></a>' for h,i,t,d,x,c,n in cards)+'</div>')
-hub+=sec('how','🧭','怎样使用阅读版','<div class="card reveal"><ol class="core"><li>先读 <b>海德堡要理问答</b> 的一个主日，再点“→ 深度解析”看解读。</li><li>对照页中的 <b>比利时信条</b> 条文看同一教义的“公开认信”表达。</li><li>遇到拣选、恩典、坚忍等问题，查 <b>多特信经</b> 的正面条文与“错谬反驳”。</li><li>用 <b>背诵模式</b>（R 键）遮住答案自测；用 🔊 朗读辅助记忆。</li></ol></div>')
+hub+=sec('how','🧭','怎样使用阅读版','<div class="card reveal"><ol class="core"><li>先读 <b>海德堡要理问答</b> 的一个主日，再点“→ 深度解析”看解读。</li><li>对照页中的 <b>比利时信条</b> 条文看同一教义的“公开认信”表达。</li><li>遇到拣选、恩典、坚忍等问题，查 <b>多特信经</b> 的正面条文与“错谬反驳”。</li><li>用 <b>背诵模式</b>（R 键）：要理问答遮住答案；比利时信条、多特信经与三大信经遮住正文，点击逐段显示。用 🔊 朗读辅助记忆。</li></ol></div>')
 page('texts/index.html','原文中心',hub,'三项联合信条与普世信经原文中心')
 print('texts done')
