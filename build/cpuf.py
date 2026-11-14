@@ -49,10 +49,20 @@ async def main():
     async with async_playwright() as p:
         b=await p.chromium.launch(args=['--enable-gpu-rasterization','--ignore-gpu-blocklist'])
         R={}
+        launch=lambda: p.chromium.launch(args=['--enable-gpu-rasterization','--ignore-gpu-blocklist'])
         for r in range(REPS):
             for u in PAGES:
                 for B in BASES:
-                    x=await run(b,B+u);R.setdefault((u,B),[]).append(x);print(r,u,B.split('@')[0],B[-6:],x,flush=True)
+                    x=None
+                    for attempt in range(3):
+                        try:
+                            x=await run(b,B+u); break
+                        except Exception as e:
+                            print('RETRY',attempt,u,B[-6:],type(e).__name__,e,flush=True)
+                            try: await b.close()
+                            except Exception: pass
+                            b=await launch()
+                    R.setdefault((u,B),[]).append(x);print(r,u,B.split('@')[0],B[-6:],x,flush=True)
         await b.close()
     for (u,B),l in R.items(): print('SUM',u,B[-6:],'fps_est',[x['fps_est'] for x in l],'cpu6',[x['cpu6_ms'] for x in l])
 asyncio.run(main())

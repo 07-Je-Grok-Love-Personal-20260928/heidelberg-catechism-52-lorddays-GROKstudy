@@ -69,6 +69,16 @@ v5changes=['⏳ 历史时间线扩充到 36 个事件，分为五个时期（背
 '⚖️ 对比页新增：“三个处境 → 三份文件”问题—文件—回答流程（说明为什么是三份而不是一份）；可点击的三圆维恩图（独有重点 / 两两共同 / 共同核心）；“抗辩派五条 vs 多特 vs 海德堡 vs 比利时”对照表。',
 '🎧 连续朗读播放器：主日页与原文阅读版一键“连续朗读”，底部播放条支持 上一段 / 播放暂停 / 下一段 / 语速 / 进度，当前朗读的问答高亮并自动滚动到视野内（使用浏览器自带语音，效果取决于系统中文语音）。',
 '✅ 校验：原文逐字 0 差异；全部页面 375 / 768 / 1024 / 1440 无溢出；Playwright 测试（新增地图飞行、时期筛选、朗读播放器、缩放与罗盘测试）；v4 → v5 性能对比见 README。']
+v10_1changes=[
+'🔧 v10.1 热修（仍发布到原 v10 三个域名，不移动 tag v10）：底图选择器弹出层改为右对齐并限制在视口宽度内，修复 360 / 375 / 414 下 maps、geo-bible、history 页面横向滚到约 416px；总览年代泳道图取消 520px 最小宽度，随栏宽缩放。v10 上线后的「选择器被地图卡片裁切」修复一并保留。',
+'🏰 海德堡 1563 情景图标签拉开（短名、交错锚点、马厩区挪到河岸），避免互相重叠。',
+'⚡ 速记闪卡的 3D 透视只在悬停或翻转时启用，滚动中未翻开的卡片保持平面，减轻 memory 页合成负担。',
+'📖 背诵模式覆盖三项联合信条与三大信经（R 键 / 背诵按钮，点击揭示正文）；对比页「应用」增加「心（要理问答）· 骨（比利时信条）· 防（多特信经）」记忆钩。',
+'🗺️ 五张新地图补充时间线故事节拍与文化说明（作者抵达、冬王流亡、海牙下午讲座、流亡即传播、圣约地标等），相关主日链接加厚。',
+'📐 多设备布局：73 页 × 8 宽（360 / 375 / 414 / 768 / 1024 / 1280 / 1440 / 1920）× night+dawn，外加 10 个重页 × 其余 8 套主题 × 8 宽；展开控件并点击选择器 / 导航簇 / 主题按钮。共 1840 次。修复前 90 条真实问题全部是上述三页窄屏选择器溢出；修复后抽查 maps / geo-bible / history / memory / index 于 360–768 × night / dawn / sumi，0 溢出、0 非设计重叠。',
+'⚡ 流畅度：共享机构负载较高（测量时约 13–21），未重跑易受抢占干扰的 perf6；改用 cpuf（主线程 tdur ×6 → 丢帧估算，不受其他进程抢占影响）对 12 个页面做 mobile（375×812 DPR3）三次取中位数。11 页 ≥ 58.3；memory 59.6（对照同法 v9 为 59.8；v9 的 perf6 曾为 57.5）。maps 中位数 57.3（三次 58.5 / 57.3 / 57.3；v9 同法 58.4），因新增五对示意图 + 实时地图略增负担。',
+'✅ 校验：原文逐字 0 差异；和合本经文 0 差异；十套主题 WCAG AA；v8 / v9 Playwright 测试 0 失败。Lighthouse 见 README。',
+]
 v10changes=[
 '🗺️ 底图源大幅扩充，并加上可见的「📚 底图」选择器：Esri 街道 / 地形 / 国家地理 / 自然地貌、CARTO Voyager / Positron / Dark Matter、OSM / OSM Humanitarian、OpenTopoMap、OpenFreeMap Liberty / Bright / Dark（矢量样式）、USGS 地形、GeoQ 智图、高德道路（无钥试探）。选择自动记住；「自动」按列表探测，8 秒无瓦片或连续失败即改用下一个，全部失败退回站内 Natural Earth。高德 / GeoQ 为中国可达源，采用 GCJ-02，与本站 WGS-84 地点有偏移，仅作底图；Stadia/Stamen 现需密钥，未接入。',
 '🖼️ 新增五张地图，各配示意图或情景图 / 讲解图 + 实时地图：🏰 1563 海德堡城情景图（城堡、圣灵堂、大学、内卡河）；⚔️ 三十年战争与普法尔茨命运（1618–1648 四幕讲解）；🌐 要理问答译本之路；🕊️ 今日欧陆改革宗教会分布（示意）；✝️ 福音地理（伯利恒—加利利—耶路撒冷，对应主日 14–19）。',
@@ -117,7 +127,9 @@ v6changes=['⚡ 流畅度重做（针对“页面有些卡顿”）：几乎移�
 '✅ 校验：原文逐字 0 差异（2094 段 + 53 条金句）；4 个宽度无溢出；Playwright 测试；6× CPU 降速 + 手机仿真滚动帧率与 Lighthouse 的 v5 → v6 对比见 README。']
 lnk=lambda L:''.join(f'<li>{esc(t)}：<a href="{u}" target="_blank" rel="noopener">{u}</a></li>' for t,u in L)
 ch=f'''<section class="hero reveal"><span class="chip g">🆕 版本记录</span><h1>更新记录 Changelog</h1><p class="lead">当前版本：<b class="key">{VERSION}</b> · {DATE}</p></section>'''
-ch+=sec('v9','🚀','v9 · 2026-10-23',f'<div class="card pan core reveal"><ul class="clean">{"".join(f"<li>{esc(x)}</li>" for x in v9changes)}</ul><h3>🌐 v9 部署</h3><ul class="clean">{lnk(V9)}<li>Release：<a href="{REL}v9">{REL}v9</a></li></ul></div>')
+ch+=sec('v10.1','🚀',f'v10.1 · {DATE}',f'<div class="card pan core reveal"><ul class="clean">{''.join(f"<li>{esc(x)}</li>" for x in v10_1changes)}</ul><h3>🌐 v10.1 部署（沿用 v10 域名）</h3><ul class="clean">{lnk(V10)}<li>Release：<a href="{REL}v10.1">{REL}v10.1</a></li></ul></div>')
+ch+=sec('v10','📦',f'v10 · {DATE}',f'<div class="card pan why reveal"><ul class="clean">{''.join(f"<li>{esc(x)}</li>" for x in v10changes)}</ul><h3>🌐 v10 部署（保留；v10.1 覆盖同域名，tag v10 未移动）</h3><ul class="clean">{lnk(V10)}<li>Release：<a href="{REL}v10">{REL}v10</a></li></ul></div>')
+ch+=sec('v9','📦','v9 · 2026-10-23',f'<div class="card pan core reveal"><ul class="clean">{"".join(f"<li>{esc(x)}</li>" for x in v9changes)}</ul><h3>🌐 v9 部署</h3><ul class="clean">{lnk(V9)}<li>Release：<a href="{REL}v9">{REL}v9</a></li></ul></div>')
 ch+=sec('v8','📦','v8 · 2026-10-23',f'<div class="card pan why reveal"><ul class="clean">{"".join(f"<li>{esc(x)}</li>" for x in v8changes)}</ul><h3>🌐 v8 部署（保留）</h3><ul class="clean">{lnk(V8)}<li>Release：<a href="{REL}v8">{REL}v8</a></li></ul></div>')
 ch+=sec('v7','📦','v7 · 2026-10-23',f'<div class="card pan why reveal"><ul class="clean">{"".join(f"<li>{esc(x)}</li>" for x in v7changes)}</ul><h3>🌐 v7 部署（保留）</h3><ul class="clean">{lnk(V7)}<li>Release：<a href="{REL}v7">{REL}v7</a></li></ul></div>')
 ch+=sec('v6','📦','v6 · 2026-10-21',f'<div class="card pan why reveal"><ul class="clean">{"".join(f"<li>{esc(x)}</li>" for x in v6changes)}</ul><h3>🌐 v6 部署（保留）</h3><ul class="clean">{lnk(V6)}<li>Release：<a href="{REL}v6">{REL}v6</a></li></ul></div>')
@@ -128,5 +140,5 @@ ch+=sec('v2','📦','v2 · 2026-10-20',f'<div class="card pan why reveal"><ul cl
 ch+=sec('v1','📦','v1 · 2026-10-20',f'<div class="card pan why reveal"><ul class="clean"><li>首版：52 主日深度解析页、四部全文阅读/背诵版、圣经与圣约、历史地理（时间线、地图）、信条对比、速记中心、资料页。</li><li>全部原文由程序从 ccifellowship.org 抓取并逐字校验。</li></ul><h3>🌐 v1 部署（保留不动）</h3><ul class="clean">{lnk(V1)}<li>Release：<a href="{REL}v1">{REL}v1</a></li></ul></div>')
 ch+=sec('repo','📂','源码',f'<div class="card reveal"><p><a href="https://github.com/07-Je-Grok-Love-Personal-20260928/{REPO}">github.com/07-Je-Grok-Love-Personal-20260928/{REPO}</a></p></div>')
 page('changelog.html','更新记录',ch,'版本更新记录')
-json.dump(dict(V10=V10,changes_v10=v10changes,V9=V9,changes_v9=v9changes,V8=V8,changes_v8=v8changes,V1=V1,V2=V2,V3=V3,V4=V4,V5=V5,V6=V6,V7=V7,changes_v7=v7changes,changes_v6=v6changes,changes=v2changes,changes_v3=v3changes,changes_v4=v4changes,changes_v5=v5changes),open(ROOT+'/build/versions.json','w'),ensure_ascii=False,indent=1)
+json.dump(dict(V10=V10,changes_v10=v10changes,changes_v10_1=v10_1changes,V9=V9,changes_v9=v9changes,V8=V8,changes_v8=v8changes,V1=V1,V2=V2,V3=V3,V4=V4,V5=V5,V6=V6,V7=V7,changes_v7=v7changes,changes_v6=v6changes,changes=v2changes,changes_v3=v3changes,changes_v4=v4changes,changes_v5=v5changes),open(ROOT+'/build/versions.json','w'),ensure_ascii=False,indent=1)
 print('v3 pages done', len(idx))

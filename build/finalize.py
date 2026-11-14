@@ -1,6 +1,7 @@
 # v7 post-build: (1) inline the (minified) stylesheet into every page → no render-blocking CSS request;
 # (2) write sw.js whose cache name is a hash of the whole build (each deploy = fresh cache, old caches deleted).
 import os,re,hashlib,json
+from common import VERSION
 SITE=os.path.join(os.path.dirname(__file__),'..','site')
 css=open(os.path.join(SITE,'assets/css/style.css')).read().strip()
 n=0;h=hashlib.sha1()
@@ -24,7 +25,7 @@ for d,_,fs in os.walk(SITE):
             if s2!=s: n+=1; open(p,'w').write(s2); s=s2
             pages.append(rel)
         if rel!='sw.js': h.update(rel.encode()); h.update(open(p,'rb').read())
-ver='hc-v10-'+h.hexdigest()[:10]
+ver=f'hc-{VERSION}-'+h.hexdigest()[:10]
 core=['./','index.html','lorddays.html','texts/hc.html','texts/index.html','memory.html','assets/js/app.js']
 sw=f'''/* v8 service worker — instant repeat loads + offline reading. Cache: {ver} */
 const V="{ver}",CORE={json.dumps(core)};

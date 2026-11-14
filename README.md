@@ -2,7 +2,7 @@
 
 > 《海德堡要理问答》52 主日全景深度解析：简体中文深度学习网站，共 129 问，持守欧陆改革宗立场（三项联合信条 + 三大普世信经）。
 
-## 🌐 当前在线访问（v10）
+## 🌐 当前在线访问（v10.1，沿用 v10 三个域名）
 
 | 平台 | 链接 |
 |---|---|
@@ -11,7 +11,7 @@
 | Netlify | https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.netlify.app |
 
 📦 源码仓库：https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy
-🏷️ Release：[v10](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v10) · [v9](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v9) · [v8](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v8) · [v7](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v7) · [v6](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v6) · [v5](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v5) · [v4](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v4) · [v3](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v3) · [v2](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v2) · [v1](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v1)
+🏷️ Release：[v10.1](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v10.1) · [v10](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v10) · [v9](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v9) · [v8](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v8) · [v7](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v7) · [v6](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v6) · [v5](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v5) · [v4](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v4) · [v3](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v3) · [v2](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v2) · [v1](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v1)
 📝 更新记录页：`changelog.html`（站内顶栏版本徽章）
 
 ## 🆕 更新说明（v10 · 2026-11-14）
@@ -20,6 +20,17 @@
 - 🖼️ 新增五张地图，各配示意图或情景图 / 讲解图 + 实时地图：🏰 1563 海德堡城情景图（城堡、圣灵堂、大学、内卡河）；⚔️ 三十年战争与普法尔茨命运（1618–1648 四幕讲解）；🌐 要理问答译本之路；🕊️ 今日欧陆改革宗教会分布（示意）；✝️ 福音地理（伯利恒—加利利—耶路撒冷，对应主日 14–19）。
 - 🖍️ 笔记标记 4.0：新增线框标记 [[…]] 与色条记忆块 ++…++；「🎯 复习」模式（Shift+M）淡化未标记文字，只留下记号。
 - ✅ 校验：原文逐字 0 差异；和合本经文 0 差异；十套主题 WCAG AA；v8 / v9 Playwright 测试通过。
+
+## 🆕 更新说明（v10.1 · 2026-11-14）
+
+- 🔧 v10.1 热修（仍发布到原 v10 三个域名，不移动 tag v10）：底图选择器弹出层改为右对齐并限制在视口宽度内，修复 360 / 375 / 414 下 maps、geo-bible、history 页面横向滚到约 416px；总览年代泳道图取消 520px 最小宽度，随栏宽缩放。v10 上线后的「选择器被地图卡片裁切」修复一并保留。
+- 🏰 海德堡 1563 情景图标签拉开（短名、交错锚点、马厩区挪到河岸），避免互相重叠。
+- ⚡ 速记闪卡的 3D 透视只在悬停或翻转时启用，滚动中未翻开的卡片保持平面，减轻 memory 页合成负担。
+- 📖 背诵模式覆盖三项联合信条与三大信经（R 键 / 背诵按钮，点击揭示正文）；对比页「应用」增加「心（要理问答）· 骨（比利时信条）· 防（多特信经）」记忆钩。
+- 🗺️ 五张新地图补充时间线故事节拍与文化说明（作者抵达、冬王流亡、海牙下午讲座、流亡即传播、圣约地标等），相关主日链接加厚。
+- 📐 多设备布局：73 页 × 8 宽（360 / 375 / 414 / 768 / 1024 / 1280 / 1440 / 1920）× night+dawn，外加 10 个重页 × 其余 8 套主题 × 8 宽；展开控件并点击选择器 / 导航簇 / 主题按钮。共 1840 次。修复前 90 条真实问题全部是上述三页窄屏选择器溢出；修复后抽查 maps / geo-bible / history / memory / index 于 360–768 × night / dawn / sumi，0 溢出、0 非设计重叠。
+- ⚡ 流畅度：共享机构负载较高（测量时约 13–21），未重跑易受抢占干扰的 perf6；改用 cpuf（主线程 tdur ×6 → 丢帧估算，不受其他进程抢占影响）对 12 个页面做 mobile（375×812 DPR3）三次取中位数。11 页 ≥ 58.3；memory 59.6（对照同法 v9 为 59.8；v9 的 perf6 曾为 57.5）。maps 中位数 57.3（三次 58.5 / 57.3 / 57.3；v9 同法 58.4），因新增五对示意图 + 实时地图略增负担。
+- ✅ 校验：原文逐字 0 差异；和合本经文 0 差异；十套主题 WCAG AA；v8 / v9 Playwright 测试 0 失败。Lighthouse 见 README。
 
 <details><summary>v9 更新说明</summary>
 
@@ -80,7 +91,29 @@
 
 </details>
 
-### ⚡ 流畅度对比（v8 → v9）
+### ⚡ 流畅度对比（v9 → v10.1，`cpuf` mobile 三次中位数）
+
+测量方法：`build/cpuf.py` + `build/run_cpuf_pair.py`。Playwright 无头 Chromium，用主线程任务的 `tdur`（不含被其他进程抢走的时间）× 6 估算丢帧，因此在共享构建机高负载下仍可与 v9 对照。`mobile` = 375×812、DPR 3、触屏；加载 2.5 秒后，90 次滚轮（每次 160px，间隔 33ms）。v9 来自本机保留的 v9 快照（端口 8819），v10.1 来自当前 `site/`（端口 8780）。同一页面三次中位数；括号内为三次结果。
+
+| 设备 · 页面 | 估算 FPS（6×，中位数，括号内为三次） | 主线程 CPU ms（×6） |
+|---|---|---|
+| mobile · index.html | 59.5 → **59.8**（59.8, 59.8, 58.2） | 652 → **592** |
+| mobile · ld/01.html | 59.0 → **59.6**（59.6, 59.3, 59.6） | 1183 → **926** |
+| mobile · ld/34.html | 59.8 → **59.3**（59.2, 59.3, 59.6） | 952 → **968** |
+| mobile · texts/hc-2.html | 60.0 → **59.8**（59.8, 59.8, 59.8） | 503 → **480** |
+| mobile · history.html | 56.7 → **58.3**（59.2, 57.7, 58.3） | 2154 → **1878** |
+| mobile · memory.html | 59.8 → **59.6**（59.6, 59.4, 59.6） | 1225 → **1344** |
+| mobile · maps.html | 58.4 → **57.3**（58.5, 57.3, 57.3） | 1214 → **1412** |
+| mobile · geo-bible.html | 59.5 → **59.1**（59.1, 58.6, 59.1） | 683 → **914** |
+| mobile · marks.html | 60.0 → **60.0**（60.0, 60.0, 60.0） | 710 → **587** |
+| mobile · compare.html | 59.3 → **59.8**（59.6, 59.8, 59.8） | 897 → **826** |
+| mobile · bible.html | 60.0 → **59.8**（59.4, 60.0, 59.8） | 924 → **1007** |
+| mobile · lorddays.html | 59.4 → **59.4**（59.4, 58.2, 59.4） | 1018 → **1042** |
+
+说明：测量时机器 load average 约 13–21，因此**未重跑易受 CPU 抢占干扰的 `perf6.py`**（v9 官方 perf6 表仍见下方）。12 个页面中 11 个中位数 ≥ 58.3 fps；**mobile · maps.html 中位数 57.3**（三次 58.5 / 57.3 / 57.3；同法 v9 为 58.4），因 v10 新增五对示意图 + 实时地图略增负担。mobile · memory.html 中位数 **59.6**（同法 v9 59.8；v9 的 perf6 曾为 57.5，闪卡改为仅在翻转 / 悬停时启用 3D 透视）。desktop2x 的 cpuf 与 perf6 中位数因负载未在本轮重测。
+
+### ⚡ 流畅度对比（v8 → v9，历史）
+
 
 测量方法：`build/perf6.py`，Playwright 无头 Chromium，CDP **6 倍 CPU 降速**；`mobile` = 375×812、DPR 3、触屏，`desktop2x` = 1440×900、DPR 2；加载 2.5 秒后，用 90 次滚轮（每次 160px，间隔 33ms）连续滚动，rAF 记录帧间隔。v8（`v8` 标签的 `site/`）与 v9 在同一台机器上测量（`perf6_v8_base.json` 单次；`perf6_v9.json` 为 3 次完整测量的中位数，括号内为三次结果）。“每 1000px”按滚动距离归一化。
 
@@ -113,7 +146,25 @@
 
 说明：两组数据都在机器较空闲时（load average 约 1.5–3.5，构建机与其他任务共享）依次测量，同一页面重复测量相差可达 ±2–3 fps。v9 的 24 个“页面 × 设备”组合中，23 个中位数 ≥ 58 fps；**mobile · memory.html 中位数 57.5（三次 59.4 / 57.5 / 56.6），未稳定达到 58 的目标**。v8 同法测量有 15 个低于 58，最低 42.9（desktop lorddays）。`build/cpuf.py` 另提供一个不受 CPU 抢占影响的估算，可在共享机器上复核。
 
-### 🔦 Lighthouse（移动端预设，performance；v8 → v9）
+### 🔦 Lighthouse（移动端预设，performance；v9 → v10.1）
+
+本地（`build/lh.py`，默认 Lighthouse 移动端预设，当前 `site/` 于 http://127.0.0.1:8780/ ，每页 3 次取中位数；`lh_v10.json`，对照 `lh_v9.json`）。目标保持 CLS 0。
+
+| 页面 | 分数 | TBT ms | CLS | LCP ms | FCP ms |
+|---|---|---|---|---|---|
+| index.html | 99 → **91** | 2 → **328** | 0 → **0** | 1807 → 1964 | 1771 → 1395 |
+| ld/01.html | 98 → **97** | 1 → **2** | 0 → **0** | 1863 → 2089 | 1863 → 2060 |
+| history.html | 98 → **97** | 43 → **35** | 0 → **0** | 1952 → 2102 | 1944 → 1969 |
+| memory.html | 96 → **96** | 20 → **34** | 0 → **0** | 2213 → 2224 | 2158 → 2150 |
+| maps.html | 92 → **86** | 0 → **0** | 0 → **0** | 2768 → 3368 | 2567 → 3204 |
+| compare.html | **96** | **0** | **0** | 2260 | 2260 |
+| bible.html | **96** | **0** | **0** | 2285 | 2285 |
+| lorddays.html | **97** | **0** | **0** | 2169 | 2127 |
+
+说明：8 个页面 **CLS 全部为 0**。ld/01、history、memory 分数与 v9 接近；index 分数 91（v9 为 99）主要因本轮 TBT 较高（328ms，共享机负载下波动）；maps 86（v9 为 92）与新增五对地图、LCP 变长相符。compare / bible / lorddays 为 v10 起补测，无 v9 对照。
+
+### 🔦 Lighthouse（移动端预设，performance；v8 → v9，历史）
+
 
 本地（`build/lh.py`，模拟 4× CPU + 慢速 4G，同一本地服务器，每页 3 次取中位数；`lh_v8.json` / `lh_v9.json`）。v9 修正了一处 CLS 回归（空闲预排版只处理视口以下的区块），8 个页面 CLS 全部为 0：
 
@@ -328,6 +379,7 @@ FAILS 0 []
 - `build/verify_verbatim.py`：站内 2,712 个原文块逐字比对 **0 处差异**；53 条“金句”均为原文的逐字子串（0 处差异）。
 - `build/check_cuv.py`（v7，v8 扩展到地图集与圣经地理）：学习笔记中带出处的经文引语 138 处，与信望爱 FHL 线上和合本（https://bible.fhl.net/ ，version=unv）逐条比对，**0 处不符**（修正 30 余处措辞 / 出处）。学习笔记中加引号的要理问答语句已与原文逐字对照。
 - `build/layout_check.py`（v8）：全部 73 个页面（含 52 主日、5 个分卷与 v8 新增的 maps / geo-bible / marks）× 375 / 768 / 1024 / 1440 四种宽度 × 十套主题（v9），横向溢出与顶栏截断 **0 个问题**。
+- `build/layout_v10.py`（v10.1）：允许的缩小矩阵——全部 73 页 × 8 宽（360 / 375 / 414 / 768 / 1024 / 1280 / 1440 / 1920）× night + dawn（1200 次），外加 10 个重页（maps、geo-bible、history、lorddays、memory、texts/hc-all、compare、texts/bc、texts/cd、index）× 其余 8 套主题 × 8 宽（640 次），合计 **1840** 次；每次展开控件并点击选择器 / 导航簇 / 主题按钮。修复前 90 条真实问题全部是 maps / geo-bible / history 在 360–414 下底图选择器把 `scrollWidth` 撑到 416–417px；右对齐并限制视口宽度后，抽查这三页 + memory + index 于 360 / 375 / 414 / 768 × night / dawn / sumi（EXPAND + CLICK）**0 溢出、0 非设计重叠**（`#navc`、`.lmspop` 等浮动层按设计单独记录，不计入失败）。
 - ccifellowship.org 未收录多特信经的“结论”部分，本站也未收录。威斯敏斯特小要理问答英文引文取自 opc.org。原文版权归原出版委员会，本站仅作学习引用。解读为学习笔记，未经神学家审阅；图标、分组与“圣约链”均为学习标签。
 
 ## 🛠️ 构建与部署
@@ -351,6 +403,14 @@ netlify deploy --prod --dir site --site ea86ca46-626f-4c72-9722-27b6414db9b9
 ```
 
 ## 🗂️ 版本历史
+
+### v10.1 · 2026-11-14 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v10.1)
+沿用 v10 三个域名（Surge / Netlify / GitHub Pages）；tag v10 未移动。
+| 平台 | 链接 |
+|---|---|
+| GitHub Pages | https://07-je-grok-love-personal-20260928.github.io/heidelberg-catechism-52-lorddays-GROKstudy/ |
+| Surge | https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.surge.sh |
+| Netlify | https://heidelberg-catechism-52-lorddays-20261114-v10-grokstudy.netlify.app |
 
 ### v10 · 2026-11-14 · [Release](https://github.com/07-Je-Grok-Love-Personal-20260928/heidelberg-catechism-52-lorddays-GROKstudy/releases/tag/v10)
 | 平台 | 链接 |

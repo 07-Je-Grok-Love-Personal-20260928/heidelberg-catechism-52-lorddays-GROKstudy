@@ -1,0 +1,66 @@
+{
+ "index.html": {
+  "score": 91,
+  "fcp": 1395,
+  "lcp": 1964,
+  "tbt": 328,
+  "cls": 0,
+  "si": 1395
+ },
+ "ld/01.html": {
+  "score": 97,
+  "fcp": 2060,
+  "lcp": 2089,
+  "tbt": 2,
+  "cls": 0,
+  "si": 2060
+ },
+ "history.html": {
+  "score": 97,
+  "fcp": 1969,
+  "lcp": 2102,
+  "tbt": 35,
+  "cls": 0,
+  "si": 1969
+ },
+ "memory.html": {
+  "score": 96,
+  "fcp": 2150,
+  "lcp": 2224,
+  "tbt": 34,
+  "cls": 0,
+  "si": 2150
+ },
+ "maps.html": {
+  "score": 86,
+  "fcp": 3204,
+  "lcp": 3368,
+  "tbt": 0,
+  "cls": 0,
+  "si": 3204
+ },
+ "compare.html": {
+  "score": 96,
+  "fcp": 2260,
+  "lcp": 2260,
+  "tbt": 0,
+  "cls": 0,
+  "si": 2260
+ },
+ "bible.html": {
+  "score": 96,
+  "fcp": 2285,
+  "lcp": 2285,
+  "tbt": 0,
+  "cls": 0,
+  "si": 2285
+ },
+ "lorddays.html": {
+  "score": 97,
+  "fcp": 2127,
+  "lcp": 2169,
+  "tbt": 0,
+  "cls": 0,
+  "si": 2127
+ }
+}
